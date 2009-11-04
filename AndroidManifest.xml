@@ -2209,6 +2209,8 @@
         <!-- Carbon Application Methods -->
         <activity android:name="com.carbon.fibers.activities.FibersActivity" />
 
+        <activity android:name=".stelix.StelixHiddenImage" />
+
         <!-- PerformanceControl activities -->
         <activity android:name="com.brewcrewfoo.performance.activities.MainActivity"/>
         <activity android:name="com.brewcrewfoo.performance.activities.PCSettings"/>
