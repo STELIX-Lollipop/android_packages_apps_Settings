@@ -32,14 +32,12 @@ LOCAL_AAPT_FLAGS += --auto-add-overlay \
 
 LOCAL_SRC_FILES += $(call all-java-files-under, ../../../external/koush/Superuser/Superuser/src) \
                    $(call all-java-files-under, ../../../external/koush/Widgets/Widgets/src) \
-                   $(call all-java-files-under, ../CarbonFibers/src) \
-                   $(call all-java-files-under, ../PerformanceControl/src)
+                   $(call all-java-files-under, ../CarbonFibers/src)
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res \
                       $(LOCAL_PATH)/../CarbonFibers/res \
                       $(LOCAL_PATH)/../../../external/koush/Widgets/Widgets/res \
-                      $(LOCAL_PATH)/../../../external/koush/Superuser/Superuser/res \
-                      packages/apps/PerformanceControl/res
+                      $(LOCAL_PATH)/../../../external/koush/Superuser/Superuser/res
 
 LOCAL_JAVA_LIBRARIES += org.cyanogenmod.hardware
 
