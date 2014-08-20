@@ -88,6 +88,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_DOZE = "doze";
     private static final String KEY_AUTO_BRIGHTNESS = "auto_brightness";
     private static final String KEY_AUTO_ROTATE = "auto_rotate";
+
     private static final String KEY_ADAPTIVE_BACKLIGHT = "adaptive_backlight";
     private static final String KEY_SUNLIGHT_ENHANCEMENT = "sunlight_enhancement";
     private static final String KEY_COLOR_ENHANCEMENT = "color_enhancement";
@@ -216,6 +217,41 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             mDisplayRotationPreference = (PreferenceScreen) findPreference(KEY_DISPLAY_ROTATION);
         } else {
             removePreference(KEY_DISPLAY_ROTATION);
+        }
+
+        if (RotationPolicy.isRotationLockToggleVisible(activity)) {
+            DropDownPreference rotatePreference =
+                    (DropDownPreference) findPreference(KEY_AUTO_ROTATE);
+            rotatePreference.addItem(activity.getString(R.string.display_auto_rotate_rotate),
+                    false);
+            int rotateLockedResourceId;
+            // The following block sets the string used when rotation is locked.
+            // If the device locks specifically to portrait or landscape (rather than current
+            // rotation), then we use a different string to include this information.
+            if (allowAllRotations(activity)) {
+                rotateLockedResourceId = R.string.display_auto_rotate_stay_in_current;
+            } else {
+                if (RotationPolicy.getRotationLockOrientation(activity)
+                        == Configuration.ORIENTATION_PORTRAIT) {
+                    rotateLockedResourceId =
+                            R.string.display_auto_rotate_stay_in_portrait;
+                } else {
+                    rotateLockedResourceId =
+                            R.string.display_auto_rotate_stay_in_landscape;
+                }
+            }
+            rotatePreference.addItem(activity.getString(rotateLockedResourceId), true);
+            rotatePreference.setSelectedItem(RotationPolicy.isRotationLocked(activity) ?
+                    1 : 0);
+            rotatePreference.setCallback(new Callback() {
+                @Override
+                public boolean onItemSelected(int pos, Object value) {
+                    RotationPolicy.setRotationLock(activity, (Boolean) value);
+                    return true;
+                }
+            });
+        } else {
+            removePreference(KEY_AUTO_ROTATE);
         }
 
         mTapToWake = (SwitchPreference) findPreference(KEY_TAP_TO_WAKE);
@@ -676,6 +712,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     }
                     if (!isDozeAvailable(context)) {
                         result.add(KEY_DOZE);
+                    }
+                    if (!RotationPolicy.isRotationLockToggleVisible(context)) {
+                        result.add(KEY_DISPLAY_ROTATION);
                     }
                     if (!RotationPolicy.isRotationLockToggleVisible(context)) {
                         result.add(KEY_AUTO_ROTATE);
