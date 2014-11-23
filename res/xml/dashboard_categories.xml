@@ -77,6 +77,15 @@
             android:title="@string/header_category_device" >
 
         <dashboard-tile
+            android:title="@string/rom_control_title"
+            android:icon="@drawable/ic_settings_rom_control" >
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.aokp.romcontrol.MainActivity"
+            android:targetPackage="com.aokp.romcontrol" />
+        </dashboard-tile>
+
+        <dashboard-tile
                 android:id="@+id/button_settings"
                 android:title="@string/button_pref_title"
                 android:fragment="com.android.settings.ButtonSettings"
