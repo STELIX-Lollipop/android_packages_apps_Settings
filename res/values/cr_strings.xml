@@ -18,9 +18,6 @@
     <!-- Carbon Fibers -->
     <string name="carbon_fibers_title">Carbon Fibers</string>
 
-    <!-- Aicp Settings -->
-    <string name="aicp_settings_title">AICP Extras</string>
-
     <string name="ok">OK</string>
     <string name="dlg_ok">OK</string>
     <string name="menu_save">Save</string>
