@@ -108,13 +108,6 @@
                 android:defaultValue="false"
                 android:persistent="false" />
 
-            <SwitchPreference
-                android:key="wakeup_when_plugged_unplugged"
-                android:title="@string/wakeup_when_plugged_unplugged_title"
-                android:summary="@string/wakeup_when_plugged_unplugged_summary"
-                android:defaultValue="true"
-                android:persistent="false" />
-
          </PreferenceCategory>
 
 </PreferenceScreen>

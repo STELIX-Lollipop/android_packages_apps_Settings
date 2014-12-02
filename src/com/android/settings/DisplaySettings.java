@@ -49,7 +49,6 @@ import android.os.SystemProperties;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
@@ -83,7 +82,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_TAP_TO_WAKE = "double_tap_wake_gesture";
     private static final String CATEGORY_ADVANCED = "advanced_display_prefs";
 
-    private static final String KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
     private static final String KEY_WAKEUP_CATEGORY = "category_wakeup_options";
     private static final String KEY_VOLUME_WAKE = "pref_volume_wake";
 
@@ -98,7 +96,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private WarnedListPreference mFontSizePref;
 
-    private SwitchPreference mWakeUpWhenPluggedOrUnplugged;
     private PreferenceCategory mWakeUpOptions;
 
     private final Configuration mCurConfig = new Configuration();
@@ -126,7 +123,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         final ContentResolver resolver = activity.getContentResolver();
 
         addPreferencesFromResource(R.xml.display_settings);
-
         PreferenceScreen prefSet = getPreferenceScreen();
 
         mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
@@ -197,22 +193,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             }
         }
 
-        mWakeUpWhenPluggedOrUnplugged =
-            (SwitchPreference) findPreference(KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED);
-        // hide option if device is already set to never wake up
-        if(!getResources().getBoolean(
-                com.android.internal.R.bool.config_unplugTurnsOnScreen)) {
-                mWakeUpOptions.removePreference(mWakeUpWhenPluggedOrUnplugged);
-                counter++;
-        } else {
-            mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getInt(resolver,
-                        Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, 1) == 1);
-            mWakeUpWhenPluggedOrUnplugged.setOnPreferenceChangeListener(this);
-        }
-
-        if (counter == 2) {
-            prefSet.removePreference(mWakeUpOptions);
-        }
     }
 
     private static boolean allowAllRotations(Context context) {
@@ -505,12 +485,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.Secure.putInt(getContentResolver(), DOZE_ENABLED, value ? 1 : 0);
         }
-        if (KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED.equals(key)) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
-                    (Boolean) objValue ? 1 : 0);
-        }
-
         return true;
     }
 
