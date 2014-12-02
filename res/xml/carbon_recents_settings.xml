@@ -15,8 +15,15 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        android:title="@string/recents_settings_title"
-        android:key="recents_settings">
+      xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+
+    <!-- Search in Recents -->
+    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="recents_show_search_bar"
+            android:title="@string/recents_show_searchbar"
+            settings:keywords="@string/keywords_recents_show_searchbar"
+            android:defaultValue="true"
+            settings:advanced="true" />
 
     <!-- Recents panel settings -->
     <PreferenceScreen
@@ -32,6 +39,6 @@
         <intent android:action="android.intent.action.MAIN"
             android:targetPackage="org.omnirom.omniswitch"
             android:targetClass="org.omnirom.omniswitch.SettingsActivity" />
-        </PreferenceScreen>
+    </PreferenceScreen>
 
 </PreferenceScreen>
