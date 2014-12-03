@@ -83,6 +83,7 @@
 
     <!-- Slim settings screens -->
     <string name="header_category_personalization">Personalization</string>
+    <string name="slim_interface_settings_title">Slim Interface</string>
     <string name="interface_settings_title">Interface</string>
 
     <!-- Color Picker -->
