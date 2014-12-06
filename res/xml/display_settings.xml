@@ -52,24 +52,11 @@
                 android:title="@string/screensaver_settings_title"
                 android:fragment="com.android.settings.DreamSettings" />
 
-        <SwitchPreference
-                android:key="lift_to_wake"
-                android:title="@string/lift_to_wake_title"
-                android:persistent="false" />
-
-        <SwitchPreference
-                android:key="doze"
-                android:title="@string/doze_title"
-                android:summary="@string/doze_summary"
-                android:persistent="false" />
-
-        <com.android.settings.WarnedListPreference
+        <com.android.settings.FontDialogPreference
                 android:key="font_size"
                 android:title="@string/title_font_size"
                 settings:keywords="@string/keywords_display_font_size"
                 android:summary="@string/summary_font_size"
-                android:entries="@array/entries_font_size"
-                android:entryValues="@array/entryvalues_font_size"
                 android:dialogTitle="@string/dialog_title_font_size" />
 
         <PreferenceScreen
@@ -82,9 +69,59 @@
                 android:title="@string/wifi_display_settings_title"
                 settings:keywords="@string/keywords_display_cast_screen"
                 android:fragment="com.android.settings.wfd.WifiDisplaySettings" />
+
         <PreferenceCategory
                 android:key="advanced_display_prefs"
                 android:title="@string/advanced_settings">
+
+                <SwitchPreference
+                    android:key="adaptive_backlight"
+                    android:title="@string/adaptive_backlight_title"
+                    android:summary="@string/adaptive_backlight_summary"
+                    android:defaultValue="true" />
+
+               <SwitchPreference
+                    android:key="sunlight_enhancement"
+                    android:title="@string/sunlight_enhancement_title"
+                    android:summary="@string/sunlight_enhancement_summary"
+                    android:defaultValue="true" />
+
+               <SwitchPreference
+                    android:key="color_enhancement"
+                    android:title="@string/color_enhancement_title"
+                    android:summary="@string/color_enhancement_summary"
+                    android:defaultValue="true" />
+
+                <com.android.settings.hardware.DisplayColor
+                    android:key="color_calibration"
+                    android:title="@string/color_calibration_title"
+                    android:dialogTitle="@string/color_calibration_title"
+                    android:summary="@string/color_calibration_summary"
+                    android:persistent="false" />
+
+                <com.android.settings.hardware.DisplayGamma
+                    android:key="gamma_tuning"
+                    android:title="@string/gamma_tuning_title_head"
+                    android:dialogTitle="@string/gamma_tuning_title_head"
+                    android:summary="@string/gamma_tuning_summary_head"
+                    android:persistent="false" />
+
+        </PreferenceCategory>
+
+         <PreferenceCategory
+             android:key="category_wakeup_options"
+             android:title="@string/display_category_wakeup_options_title" >
+
+                <SwitchPreference
+                    android:key="lift_to_wake"
+                    android:title="@string/lift_to_wake_title"
+                    android:persistent="false" />
+
+                <SwitchPreference
+                    android:key="doze"
+                    android:title="@string/doze_title"
+                    android:summary="@string/doze_summary"
+                    android:persistent="false" />
 
                 <SwitchPreference
                     android:key="double_tap_wake_gesture"
@@ -102,17 +139,11 @@
                     android:summary="@string/double_tap_to_sleep_summary"
                     android:defaultValue="true" />
 
-        </PreferenceCategory>
-
-         <PreferenceCategory
-             android:key="category_wakeup_options"
-             android:title="@string/display_category_wakeup_options_title" >
-
-             <SwitchPreference
-                 android:key="wake_when_plugged_or_unplugged"
-                 android:title="@string/wake_when_plugged_or_unplugged_title"
-                 android:summary="@string/wake_when_plugged_or_unplugged_summary"
-                 android:defaultValue="false" />
+                <SwitchPreference
+                     android:key="wake_when_plugged_or_unplugged"
+                     android:title="@string/wake_when_plugged_or_unplugged_title"
+                     android:summary="@string/wake_when_plugged_or_unplugged_summary"
+                     android:defaultValue="false" />
 
          </PreferenceCategory>
 </PreferenceScreen>
