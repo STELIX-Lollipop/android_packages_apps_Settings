@@ -38,11 +38,10 @@
         android:defaultValue="false" />
 
     <!-- Network traffic indicator -->
-    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-        android:key="network_traffic_state"
-        android:title="@string/network_traffic_indicator_title"
-        android:summary="@string/network_traffic_indicator_summary"
-        android:defaultValue="false" />
+    <PreferenceScreen
+        android:key="traffic"
+        android:fragment="com.android.settings.aicp.Traffic"
+        android:title="@string/network_traffic_title" />
 
     <!-- Status bar clock tweaks -->
     <PreferenceCategory
