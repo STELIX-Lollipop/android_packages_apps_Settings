@@ -670,9 +670,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                         result.add(KEY_DOZE);
                     }
                     if (!RotationPolicy.isRotationLockToggleVisible(context)) {
-                        result.add(KEY_DISPLAY_ROTATION);
-                    }
-                    if (!RotationPolicy.isRotationLockToggleVisible(context)) {
                         result.add(KEY_AUTO_ROTATE);
                     }
                     return result;
