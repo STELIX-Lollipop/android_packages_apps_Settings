@@ -46,8 +46,6 @@ import android.view.accessibility.AccessibilityManager;
 import android.widget.TextView;
 
 import com.android.internal.content.PackageMonitor;
-import com.android.internal.view.RotationPolicy;
-import com.android.internal.view.RotationPolicy.RotationPolicyListener;
 import com.android.settings.DialogCreatable;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -84,8 +82,6 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
             "toggle_high_text_contrast_preference";
     private static final String TOGGLE_INVERSION_PREFERENCE =
             "toggle_inversion_preference";
-    private static final String TOGGLE_LOCK_SCREEN_ROTATION_PREFERENCE =
-            "toggle_lock_screen_rotation_preference";
     private static final String TOGGLE_SPEAK_PASSWORD_PREFERENCE =
             "toggle_speak_password_preference";
     private static final String SELECT_LONG_PRESS_TIMEOUT_PREFERENCE =
@@ -184,6 +180,7 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
     private SwitchPreference mToggleLargeTextPreference;
     private SwitchPreference mToggleHighTextContrastPreference;
     private SwitchPreference mToggleLockScreenRotationPreference;
+
     private SwitchPreference mToggleSpeakPasswordPreference;
     private ListPreference mSelectLongPressTimeoutPreference;
     private Preference mNoServicesMessagePreference;
@@ -214,20 +211,12 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
 
         mSettingsPackageMonitor.register(getActivity(), getActivity().getMainLooper(), false);
         mSettingsContentObserver.register(getContentResolver());
-        if (RotationPolicy.isRotationSupported(getActivity())) {
-            RotationPolicy.registerRotationPolicyListener(getActivity(),
-                    mRotationPolicyListener);
-        }
     }
 
     @Override
     public void onPause() {
         mSettingsPackageMonitor.unregister();
         mSettingsContentObserver.unregister(getContentResolver());
-        if (RotationPolicy.isRotationSupported(getActivity())) {
-            RotationPolicy.unregisterRotationPolicyListener(getActivity(),
-                    mRotationPolicyListener);
-        }
         super.onPause();
     }
 
@@ -269,7 +258,16 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (mGlobalGesturePreferenceScreen == preference) {
+        if (mToggleLargeTextPreference == preference) {
+            handleToggleLargeTextPreferenceClick();
+            return true;
+        } else if (mToggleHighTextContrastPreference == preference) {
+            handleToggleTextContrastPreferenceClick();
+            return true;
+        } else if (mToggleSpeakPasswordPreference == preference) {
+            handleToggleSpeakPasswordPreferenceClick();
+            return true;
+        } else if (mGlobalGesturePreferenceScreen == preference) {
             handleToggleEnableAccessibilityGesturePreferenceClick();
             return true;
         } else if (mDisplayMagnificationPreferenceScreen == preference) {

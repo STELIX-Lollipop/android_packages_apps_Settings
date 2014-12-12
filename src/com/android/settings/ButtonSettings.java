@@ -78,8 +78,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final int ACTION_VOICE_SEARCH = 4;
     private static final int ACTION_IN_APP_SEARCH = 5;
     private static final int ACTION_LAUNCH_CAMERA = 6;
-    private static final int ACTION_LAST_APP = 7;
-    private static final int ACTION_SLEEP = 8;
+    private static final int ACTION_SLEEP = 7;
+    private static final int ACTION_LAST_APP = 8;
 
     // Masks for checking presence of hardware keys.
     // Must match values in frameworks/base/core/res/res/values/config.xml
@@ -185,14 +185,14 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             int defaultLongPressAction = res.getInteger(
                     com.android.internal.R.integer.config_longPressOnHomeBehavior);
             if (defaultLongPressAction < ACTION_NOTHING ||
-                    defaultLongPressAction > ACTION_SLEEP) {
+                    defaultLongPressAction > ACTION_LAST_APP) {
                 defaultLongPressAction = ACTION_NOTHING;
             }
 
             int defaultDoubleTapAction = res.getInteger(
                     com.android.internal.R.integer.config_doubleTapOnHomeBehavior);
             if (defaultDoubleTapAction < ACTION_NOTHING ||
-                    defaultDoubleTapAction > ACTION_SLEEP) {
+                    defaultDoubleTapAction > ACTION_LAST_APP) {
                 defaultDoubleTapAction = ACTION_NOTHING;
             }
 
@@ -233,7 +233,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                     cursorControlAction);
             int wakeControlAction = Settings.System.getInt(resolver,
                     Settings.System.VOLUME_WAKE_SCREEN, 0);
-            mVolumeKeyWakeControl = InitSwitch(KEY_VOLUME_WAKE_DEVICE, (wakeControlAction == 1));
+            mVolumeKeyWakeControl = initSwitch(KEY_VOLUME_WAKE_DEVICE, (wakeControlAction == 1));
         } else {
             prefScreen.removePreference(volumeCategory);
         }
@@ -265,7 +265,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
 
     }
 
-    private SwitchPreference InitSwitch(String key, boolean checked) {
+    private SwitchPreference initSwitch(String key, boolean checked) {
         SwitchPreference switchPreference = (SwitchPreference) getPreferenceManager()
                 .findPreference(key);
         if (switchPreference != null) {
