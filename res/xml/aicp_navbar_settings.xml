@@ -28,4 +28,10 @@
         android:defaultValue="48"
         android:persistent="false" />
 
+    <!-- Gesture anywhere -->
+    <PreferenceScreen
+        android:key="gesture_anywhere"
+        android:fragment="com.android.settings.aicp.gestureanywhere.GestureAnywhereSettings"
+        android:title="@string/gesture_anywhere_title" />
+
 </PreferenceScreen>
