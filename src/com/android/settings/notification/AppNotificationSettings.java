@@ -51,6 +51,7 @@ public class AppNotificationSettings extends SettingsPreferenceFragment {
     private static final String KEY_BLOCK = "block";
     private static final String KEY_PRIORITY = "priority";
     private static final String KEY_SENSITIVE = "sensitive";
+    private static final String KEY_HEADS_UP = "heads_up";
 
     static final String EXTRA_HAS_SETTINGS_INTENT = "has_settings_intent";
     static final String EXTRA_SETTINGS_INTENT = "settings_intent";
@@ -61,6 +62,7 @@ public class AppNotificationSettings extends SettingsPreferenceFragment {
     private SwitchPreference mBlock;
     private SwitchPreference mPriority;
     private SwitchPreference mSensitive;
+    private SwitchPreference mHeadsUp;
     private AppRow mAppRow;
     private boolean mCreated;
 
@@ -135,6 +137,7 @@ public class AppNotificationSettings extends SettingsPreferenceFragment {
         mBlock = (SwitchPreference) findPreference(KEY_BLOCK);
         mPriority = (SwitchPreference) findPreference(KEY_PRIORITY);
         mSensitive = (SwitchPreference) findPreference(KEY_SENSITIVE);
+        mHeadsUp = (SwitchPreference) findPreference(KEY_HEADS_UP);
 
         final boolean secure = new LockPatternUtils(getActivity()).isSecure();
         final boolean enabled = getLockscreenNotificationsEnabled();
@@ -175,6 +178,17 @@ public class AppNotificationSettings extends SettingsPreferenceFragment {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
                 final boolean priority = (Boolean) newValue;
                 return mBackend.setHighPriority(pkg, uid, priority);
+            }
+        });
+
+        mHeadsUp.setChecked(mBackend.getHeadsUpNotificationsEnabledForPackage(pkg, uid)
+                != Notification.HEADS_UP_NEVER);
+        mHeadsUp.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                final boolean headsUp = (Boolean) newValue;
+                return mBackend.setHeadsUpNotificationsEnabledForPackage(pkg, uid,
+                        headsUp ? Notification.HEADS_UP_ALLOWED : Notification.HEADS_UP_NEVER);
             }
         });
 
