@@ -62,6 +62,9 @@
     <string name="safe_headset_volume_summary">Prevent loud volume levels when headset is first plugged in</string>
     <string name="safe_headset_volume_warning_dialog_text">Listening at high volume for long periods may damage your hearing. Disable it with caution.</string>
 
+    <!-- Volume adjust sound -->
+    <string name="volume_adjust_sound_title">Volume adjust sound</string>
+
     <!-- Less Notification sounds -->
     <string name="notifications_category_title">Notifications</string>
     <string name="less_notification_sounds_title">Less frequent notification sounds</string>
