@@ -18,6 +18,9 @@
     <!-- ROM control -->
     <string name="rom_control_title">ROM control</string>
 
+    <!-- Aicp Settings -->
+    <string name="aicp_settings_title">AICP Extras</string>
+
     <string name="ok">OK</string>
     <string name="dlg_ok">OK</string>
     <string name="menu_save">Save</string>
