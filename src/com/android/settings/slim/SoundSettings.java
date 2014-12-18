@@ -45,13 +45,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
     private static final String KEY_VOL_MEDIA = "volume_keys_control_media_stream";
 
-    private static final String KEY_VOLBTN_MUSIC_CTRL = "volbtn_music_controls";
-
     private SwitchPreference mSafeHeadsetVolume;
     private ListPreference mAnnoyingNotifications;
     private SwitchPreference mVolumeKeysControlMedia;
     private SwitchPreference mCameraSounds;
-    private SwitchPreference mVolBtnMusicCtrl;
 
     private static final String KEY_CAMERA_SOUNDS = "camera_sounds";
     private static final String PROP_CAMERA_SOUND = "persist.sys.camera-sound";
@@ -83,10 +80,6 @@ public class SoundSettings extends SettingsPreferenceFragment implements
                 Settings.System.VOLUME_KEYS_CONTROL_MEDIA_STREAM, 0) != 0);
         mVolumeKeysControlMedia.setOnPreferenceChangeListener(this);
 
-        mVolBtnMusicCtrl = (SwitchPreference) findPreference(KEY_VOLBTN_MUSIC_CTRL);
-        mVolBtnMusicCtrl.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.VOLUME_MUSIC_CONTROLS, 1) != 0);
-        mVolBtnMusicCtrl.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -123,16 +116,12 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         }
 
         if (KEY_CAMERA_SOUNDS.equals(key)) {
-            if ((Boolean) objValue) {
-                SystemProperties.set(PROP_CAMERA_SOUND, "1");
-            } else {
-                showDialogInner(DLG_CAMERA_SOUND);
-            }
-        }
-        if (KEY_VOLBTN_MUSIC_CTRL.equals(key)) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.VOLUME_MUSIC_CONTROLS,
-                    (Boolean) objValue ? 1 : 0);
+           if ((Boolean) objValue) {
+               SystemProperties.set(PROP_CAMERA_SOUND, "1");
+           } else {
+               showDialogInner(DLG_CAMERA_SOUND);
+           }
+
         }
         return true;
     }
