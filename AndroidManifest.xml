@@ -2240,5 +2240,8 @@
             </intent-filter>
         </activity>
 
+        <!-- Carbon Application Methods -->
+        <activity android:name="com.carbon.fibers.activities.FibersActivity" />
+
     </application>
 </manifest>

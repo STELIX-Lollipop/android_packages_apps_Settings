@@ -75,13 +75,14 @@
             android:id="@+id/personalization_section"
             android:title="@string/header_category_personalization" >
 
+    <!-- Carbon Customizations -->
         <dashboard-tile
             android:title="@string/rom_control_title"
             android:icon="@drawable/ic_settings_rom_control" >
         <intent
             android:action="android.intent.action.MAIN"
-            android:targetClass="com.aokp.romcontrol.MainActivity"
-            android:targetPackage="com.aokp.romcontrol" />
+            android:targetClass="com.carbon.fibers.activities.FibersActivity"
+            android:targetPackage="com.android.settings" />
         </dashboard-tile>
 
         <!-- Home -->
