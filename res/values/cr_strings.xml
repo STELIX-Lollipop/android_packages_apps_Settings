@@ -15,8 +15,8 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- ROM control -->
-    <string name="rom_control_title">ROM control</string>
+    <!-- Carbon Fibers -->
+    <string name="carbon_fibers_title">Carbon Fibers</string>
 
     <!-- Aicp Settings -->
     <string name="aicp_settings_title">AICP Extras</string>
