@@ -425,8 +425,6 @@ limitations under the License.
         <item>10000</item>
     </string-array>
 
-</resources>
-
     <!-- Listview animation -->
     <string-array name="listview_animation_entries">
         <item>@string/listview_off</item>
