@@ -15,17 +15,19 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        android:title="@string/navigation_bar_title"
-        android:key="navbar_settings">
+        android:title="@string/interface_title"
+        android:key="interface_settings">
 
-    <!-- Navbar height -->
-    <ListPreference
-        android:key="navigation_bar_height"
-        android:dialogTitle="@string/navigation_bar_height"
-        android:title="@string/navigation_bar_height"
-        android:entries="@array/navigation_bar_height_entries"
-        android:entryValues="@array/navigation_bar_height_values"
-        android:defaultValue="48"
-        android:persistent="false" />
+    <!-- Display and Animations -->
+    <PreferenceScreen
+        android:id="@+id/disp_anim_settings"
+        android:title="@string/disp_anim_settings_title"
+        android:fragment="com.android.settings.aicp.DisplayAnimationsSettings" />
+
+    <!-- Gesture anywhere -->
+    <PreferenceScreen
+        android:key="gesture_anywhere"
+        android:fragment="com.android.settings.aicp.gestureanywhere.GestureAnywhereSettings"
+        android:title="@string/gesture_anywhere_title" />
 
 </PreferenceScreen>

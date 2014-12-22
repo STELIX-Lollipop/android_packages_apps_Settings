@@ -17,6 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Carbon Fibers -->
     <string name="carbon_fibers_title">Carbon Fibers</string>
+    <string name="about_carbon_rom">About CarbonROM</string>
 
     <string name="ok">OK</string>
     <string name="dlg_ok">OK</string>
@@ -340,6 +341,9 @@
     <string name="select_custom_app_title">Select custom app</string>
     <string name="select_custom_activity_title">Select custom activity</string>
     <string name="profile_applist_title">Applications</string>
+
+    <!-- Interface -->
+    <string name="interface_title">Interface</string>
 
     <!-- Display and Animations -->
     <string name="disp_anim_settings_title">Display and animations</string>

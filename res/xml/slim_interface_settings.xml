@@ -29,4 +29,8 @@
         android:fragment="com.android.settings.aicp.NavBarSettings"
         android:title="@string/navigation_bar_title" />
 
+    <PreferenceScreen
+        android:key="interface_settings"
+        android:fragment="com.android.settings.aicp.InterfaceSettings"
+        android:title="@string/interface_settings_title" />
 </PreferenceScreen>

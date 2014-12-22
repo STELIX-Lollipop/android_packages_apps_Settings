@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2013 SlimRoms
+ * Copyright (C) 2013 The ChameleonOS Open Source Project
+ * Copyright (C) 2014 The Android Ice Cold Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim;
+package com.android.settings.aicp;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -37,7 +38,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.slim_interface_settings);
+        addPreferencesFromResource(R.xml.aicp_interface_settings);
 
     }
 
