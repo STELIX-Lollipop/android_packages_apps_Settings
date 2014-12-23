@@ -11,21 +11,25 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := \
-        $(call all-java-files-under, src) \
-        src/com/android/settings/EventLogTags.logtags
+	$(call all-java-files-under, src) \
+	src/com/android/settings/EventLogTags.logtags
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res \
-    frameworks/support/v7/cardview/res \
-    $(LOCAL_PATH)/../CarbonFibers/res
+	frameworks/support/v7/cardview/res \
+	$(LOCAL_PATH)/../CarbonFibers/res
 
 LOCAL_SRC_FILES += \
-        src/com/android/location/XT/IXTSrv.aidl \
-        src/com/android/location/XT/IXTSrvCb.aidl
+	src/com/android/location/XT/IXTSrv.aidl \
+	src/com/android/location/XT/IXTSrvCb.aidl
 
 LOCAL_SRC_FILES += \
-        src/com/android/display/IPPService.aidl
+	src/com/android/display/IPPService.aidl
 
 LOCAL_SRC_FILES += $(call all-java-files-under, ../CarbonFibers/src)
+
+LOCAL_SRC_FILES += $(call all-java-files-under, ../PerformanceControl/src)
+
+LOCAL_RESOURCE_DIR += $(LOCAL_PATH)/../PerformanceControl/res
 
 LOCAL_PACKAGE_NAME := Settings
 LOCAL_CERTIFICATE := platform
@@ -34,9 +38,11 @@ LOCAL_PRIVILEGED_MODULE := true
 LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 LOCAL_AAPT_FLAGS := \
-    --auto-add-overlay \
-    --extra-packages android.support.v7.cardview \
-    --extra-packages com.carbon.fibers
+	--auto-add-overlay \
+	--extra-packages android.support.v7.cardview \
+	--extra-packages com.carbon.fibers
+
+LOCAL_AAPT_FLAGS += --extra-packages com.brewcrewfoo.performance
 
 LOCAL_AAPT_INCLUDE_ALL_RESOURCES := true
 LOCAL_ASSET_DIR := $(LOCAL_PATH)/assets

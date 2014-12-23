@@ -598,6 +598,9 @@
     <string name="misc_title">CarbonROM misc</string>
     <string name="pref_force_fast_charge_title">Force fast charge</string>
 
+    <!-- Main list strings -->
+    <string name="omni_performance_settings">Omni Performance Tool</string>
+
     <!-- Superuser indicator on status bar -->
     <string name="su_indicator">Superuser indicator</string>
     <string name="su_indicator_summary">Show superuser indicator on status bar when a session is active</string>

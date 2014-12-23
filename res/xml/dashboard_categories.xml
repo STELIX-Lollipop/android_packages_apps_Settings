@@ -314,6 +314,13 @@
                 android:icon="@drawable/ic_settings_performance"
                 />
 
+        <!-- OmniPerformanceControl -->
+        <dashboard-tile
+                android:id="@+id/performance_controls"
+                android:fragment="com.brewcrewfoo.performance.activities.MainActivity"
+                android:icon="@drawable/ic_settings_performance_omni"
+                android:title="@string/omni_performance_settings" />
+
         <!-- Development -->
         <dashboard-tile
                 android:id="@+id/development_settings"
