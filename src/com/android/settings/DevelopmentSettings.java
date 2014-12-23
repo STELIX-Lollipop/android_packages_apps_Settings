@@ -56,6 +56,7 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.preference.SwitchPreference;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -205,9 +206,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
     private SwitchPreference mEnableAdb;
     private SwitchPreference mAdbNotify;
     private SwitchPreference mAdbOverNetwork;
-
     private SwitchPreference mShowUnacAndOvercounted;
-
     private Preference mClearAdbKeys;
     private SwitchPreference mEnableTerminal;
     private Preference mBugreport;
@@ -340,7 +339,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
             removePreference(mEnableOemUnlock);
             mEnableOemUnlock = null;
         }
-        mQuickBoot= findAndInitSwitchPref(ENABLE_QUICKBOOT);
+        mQuickBoot = findAndInitSwitchPref(ENABLE_QUICKBOOT);
         mAllowMockLocation = findAndInitSwitchPref(ALLOW_MOCK_LOCATION);
         mDebugViewAttributes = findAndInitSwitchPref(DEBUG_VIEW_ATTRIBUTES);
         mPassword = (PreferenceScreen) findPreference(LOCAL_BACKUP_PASSWORD);
@@ -571,8 +570,8 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         mSwitchBar.hide();
     }
 
-    void updateSwitch(SwitchPreference uswitch, boolean value) {
-        uswitch.setChecked(value);
+    void updateSwitch(SwitchPreference Switch, boolean value) {
+        Switch.setChecked(value);
         mHaveDebugSettings |= value;
     }
 
