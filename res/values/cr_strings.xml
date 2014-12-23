@@ -479,4 +479,7 @@
     <string name="trigger_bottom_title">Trigger height</string>
     <string name="trigger_bottom_summary">Adjust the height of the trigger area</string>
 
+    <!-- Main list strings -->
+    <string name="performance_settings">Performance</string>
+
 </resources>
