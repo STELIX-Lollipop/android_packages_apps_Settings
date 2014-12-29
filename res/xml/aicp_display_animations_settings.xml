@@ -40,5 +40,11 @@
 
     </PreferenceCategory>
 
+    <PreferenceScreen
+        android:key="aokp_animation"
+        android:title="@string/aokp_animation_title"
+        android:summary="@string/aokp_animation_summary"
+        android:fragment="com.android.settings.liquid.AnimationControls" />
+
 </PreferenceScreen>
 
