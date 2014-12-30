@@ -52,4 +52,14 @@
             android:targetPackage="com.cyanogenmod.lockclock"
             android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
         </PreferenceScreen>
+
+    <!-- OmniSwitch settings -->
+    <PreferenceScreen
+        android:key="omni_switch"
+        android:title="@string/omni_switch_title"
+        android:summary="@string/omni_switch_summary">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="org.omnirom.omniswitch"
+            android:targetClass="org.omnirom.omniswitch.SettingsActivity" />
+        </PreferenceScreen>
 </PreferenceScreen>
