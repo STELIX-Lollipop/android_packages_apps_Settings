@@ -557,4 +557,8 @@
     <string name="title_animation_no_override">Prevent app overrides</string>
     <string name="summary_animation_no_override">Prevent apps from overriding transitions</string>
     <string name="animation_duration_default">Default</string>
+
+    <string name="force_show_navbar_title">Show NavBar</string>
+    <string name="force_show_navbar_summary">Force to show NavBar</string>
+
 </resources>
