@@ -1853,7 +1853,7 @@
             </intent-filter>
         </activity>
 
-        <!-- CyanogenMod activities End -->
+        <activity android:name=".cyanogenmod.ContributorsCloud" />
 
         <activity android:name=".cyanogenmod.SpamList" />
 
