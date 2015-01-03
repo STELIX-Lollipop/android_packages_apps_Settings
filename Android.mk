@@ -27,8 +27,7 @@ LOCAL_AAPT_INCLUDE_ALL_RESOURCES := true
 LOCAL_AAPT_FLAGS += --auto-add-overlay \
                     --extra-packages com.koushikdutta.superuser \
                     --extra-packages com.koushikdutta.widgets \
-                    --extra-packages com.carbon.fibers \
-                    --extra-packages com.brewcrewfoo.performance
+                    --extra-packages com.carbon.fibers
 
 LOCAL_SRC_FILES += $(call all-java-files-under, ../../../external/koush/Superuser/Superuser/src) \
                    $(call all-java-files-under, ../../../external/koush/Widgets/Widgets/src) \
