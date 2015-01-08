@@ -19,6 +19,12 @@
     <string name="carbon_fibers_title">Carbon Fibers</string>
     <string name="about_carbon_rom">About CarbonROM</string>
 
+    <!-- Carbon Customization Settings Dashboard -->
+    <string name="header_category_customization">Customization</string>
+    <string name="carbon_customization_settings_title">Carbon Customization</string>
+    <string name="interface_settings_title">Interface</string>
+    <string name="recents_settings_title">Recents</string>
+
     <string name="ok">OK</string>
     <string name="dlg_ok">OK</string>
     <string name="menu_save">Save</string>
@@ -82,11 +88,6 @@
     <!-- Volume Keys Media Control -->
     <string name="volume_keys_control_media_stream">Media control</string>
     <string name="volume_keys_control_media_stream_summary">Volume keys control media volume rather than notifications</string>
-
-    <!-- Slim settings screens -->
-    <string name="header_category_personalization">Personalization</string>
-    <string name="slim_interface_settings_title">Slim Interface</string>
-    <string name="interface_settings_title">Interface</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color Picker</string>
@@ -342,9 +343,6 @@
     <string name="select_custom_activity_title">Select custom activity</string>
     <string name="profile_applist_title">Applications</string>
 
-    <!-- Interface -->
-    <string name="interface_title">Interface</string>
-
     <!-- Display and Animations -->
     <string name="disp_anim_settings_title">Display and animations</string>
 
@@ -555,6 +553,10 @@
 
     <string name="force_show_navbar_title">Show NavBar</string>
     <string name="force_show_navbar_summary">Force to show NavBar</string>
+
+    <!-- Search Bar Switcher -->
+    <string name="recents_show_searchbar">Show Search Bar in Recents</string>
+    <string name="recents_show_searchbar_summary">Enable or disable the Google search bar in the recents menu</string>
 
     <!-- Battery Bar -->
     <string name="status_bar_battery_cat_title">Battery</string>

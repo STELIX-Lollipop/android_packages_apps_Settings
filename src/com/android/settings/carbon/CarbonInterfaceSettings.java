@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2013 The ChameleonOS Open Source Project
- * Copyright (C) 2014 The Android Ice Cold Project
+ * Copyright (C) 2014 The CarbonROM Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,27 +14,27 @@
  * limitations under the License.
  */
 
-package com.android.settings.aicp;
+package com.android.settings.carbon;
 
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceScreen;
 import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.SwitchPreference;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-public class InterfaceSettings extends SettingsPreferenceFragment implements
+public class CarbonInterfaceSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
-    private static final String TAG = "InterfaceSettings";
+    private static final String TAG = "CarbonInterfaceSettings";
 
     private static final String KEY_TOAST_ANIMATION = "toast_animation";
 
@@ -47,7 +46,7 @@ public class InterfaceSettings extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.aicp_interface_settings);
+        addPreferencesFromResource(R.xml.carbon_interface_settings);
 
         mContext = getActivity().getApplicationContext();
 

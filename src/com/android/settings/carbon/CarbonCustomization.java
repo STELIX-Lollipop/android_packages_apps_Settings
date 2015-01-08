@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 SlimRoms
+ * Copyright (C) 2014 CarbonROM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim;
+package com.android.settings.carbon;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -30,14 +30,14 @@ import android.preference.SwitchPreference;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-public class SlimInterfaceSettings extends SettingsPreferenceFragment implements
+public class CarbonCustomization extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.slim_interface_settings);
+        addPreferencesFromResource(R.xml.carbon_customization);
 
     }
 

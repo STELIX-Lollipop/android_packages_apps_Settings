@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2013 The ChameleonOS Open Source Project
- * Copyright (C) 2014 The Android Ice Cold Project
+ * Copyright (C) 2014 The CarbonROM Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.aicp;
+package com.android.settings.carbon;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -35,14 +34,11 @@ import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.util.Helpers;
 
-/**
- * LAB files borrowed from excellent ChameleonOS for AICP
- */
-public class NavBarSettings extends SettingsPreferenceFragment
+public class CarbonNavBarSettings extends SettingsPreferenceFragment
         implements OnSharedPreferenceChangeListener,
         Preference.OnPreferenceChangeListener {
 
-    private static final String TAG = "NavBarSettings";
+    private static final String TAG = "CarbonNavBarSettings";
 
     private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
 
@@ -54,7 +50,7 @@ public class NavBarSettings extends SettingsPreferenceFragment
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        addPreferencesFromResource(R.xml.aicp_navbar_settings);
+        addPreferencesFromResource(R.xml.carbon_navbar_settings);
 
         ContentResolver resolver = getActivity().getContentResolver();
         PreferenceScreen prefSet = getPreferenceScreen();
