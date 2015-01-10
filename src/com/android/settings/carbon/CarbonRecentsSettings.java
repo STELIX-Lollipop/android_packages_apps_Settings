@@ -30,6 +30,7 @@ import android.preference.SwitchPreference;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.util.Helpers;
 
 public class CarbonRecentsSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -47,7 +48,7 @@ public class CarbonRecentsSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.carbon_recents_settings);
         PackageManager pm = getPackageManager();
-
+        PreferenceScreen prefSet = getPreferenceScreen();
         mOmniSwitch = (Preference)
                 prefSet.findPreference(KEY_OMNISWITCH);
         if (!Helpers.isPackageInstalled(OMNISWITCH_PACKAGE_NAME, pm)) {

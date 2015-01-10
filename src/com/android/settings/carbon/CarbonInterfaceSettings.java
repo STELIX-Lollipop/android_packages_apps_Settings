@@ -18,6 +18,7 @@ package com.android.settings.carbon;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -55,8 +56,9 @@ public class CarbonInterfaceSettings extends SettingsPreferenceFragment implemen
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.carbon_interface_settings);
-
+        PreferenceScreen prefSet = getPreferenceScreen();
         mContext = getActivity().getApplicationContext();
+        PackageManager pm = getPackageManager();
 
         mToastAnimation = (ListPreference) findPreference(KEY_TOAST_ANIMATION);
         mToastAnimation.setSummary(mToastAnimation.getEntry());
