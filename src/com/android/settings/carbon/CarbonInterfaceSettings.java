@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.util.Helpers;
 
 public class CarbonInterfaceSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -38,9 +39,16 @@ public class CarbonInterfaceSettings extends SettingsPreferenceFragment implemen
 
     private static final String KEY_TOAST_ANIMATION = "toast_animation";
 
+    private static final String KEY_LOCKCLOCK = "lock_clock";
+
+    // Package name of the cLock app
+    public static final String LOCKCLOCK_PACKAGE_NAME = "com.cyanogenmod.lockclock";
+
     private ListPreference mToastAnimation;
 
     private Context mContext;
+
+    private Preference mLockClock;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,12 @@ public class CarbonInterfaceSettings extends SettingsPreferenceFragment implemen
         mToastAnimation.setSummary(mToastAnimation.getEntries()[CurrentToastAnimation]);
         mToastAnimation.setOnPreferenceChangeListener(this);
 
+        // cLock app check
+        mLockClock = (Preference)
+                prefSet.findPreference(KEY_LOCKCLOCK);
+        if (!Helpers.isPackageInstalled(LOCKCLOCK_PACKAGE_NAME, pm)) {
+            prefSet.removePreference(mLockClock);
+        }
     }
 
     @Override
