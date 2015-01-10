@@ -18,6 +18,7 @@ package com.android.settings.carbon;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -33,12 +34,25 @@ import com.android.settings.SettingsPreferenceFragment;
 public class CarbonRecentsSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String TAG = "CarbonRecentsSettings";
+
+    private static final String KEY_OMNISWITCH = "omni_switch";
+    public static final String OMNISWITCH_PACKAGE_NAME = "org.omnirom.omniswitch";
+
+    private Preference mOmniSwitch;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.carbon_recents_settings);
+        PackageManager pm = getPackageManager();
 
+        mOmniSwitch = (Preference)
+                prefSet.findPreference(KEY_OMNISWITCH);
+        if (!Helpers.isPackageInstalled(OMNISWITCH_PACKAGE_NAME, pm)) {
+            prefSet.removePreference(mOmniSwitch);
+        }
     }
 
     @Override

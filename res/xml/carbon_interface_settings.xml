@@ -43,13 +43,6 @@
         android:entryValues="@array/toast_animation_values"
         android:persistent="false" />
 
-    <!-- Searchbar -->
-    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-        android:key="recents_show_hide_search_bar"
-        android:title="@string/recents_show_searchbar"
-        android:summary="@string/recents_show_searchbar_summary"
-        android:defaultValue="false" />
-
     <!-- LockClock settings -->
     <PreferenceScreen
         android:key="lock_clock"
@@ -60,13 +53,4 @@
             android:targetClass="com.cyanogenmod.lockclock.preference.Preferences" />
         </PreferenceScreen>
 
-    <!-- OmniSwitch settings -->
-    <PreferenceScreen
-        android:key="omni_switch"
-        android:title="@string/omni_switch_title"
-        android:summary="@string/omni_switch_summary">
-        <intent android:action="android.intent.action.MAIN"
-            android:targetPackage="org.omnirom.omniswitch"
-            android:targetClass="org.omnirom.omniswitch.SettingsActivity" />
-        </PreferenceScreen>
 </PreferenceScreen>
