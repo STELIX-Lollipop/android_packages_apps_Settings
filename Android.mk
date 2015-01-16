@@ -2,7 +2,11 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_JAVA_LIBRARIES := bouncycastle conscrypt telephony-common
-LOCAL_STATIC_JAVA_LIBRARIES := android-support-v4 android-support-v13 jsr305
+LOCAL_STATIC_JAVA_LIBRARIES := \
+    android-support-v4 \
+    android-support-v7-cardview \
+    android-support-v13 \
+    jsr305
 
 LOCAL_MODULE_TAGS := optional
 
@@ -25,12 +29,14 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 LOCAL_AAPT_INCLUDE_ALL_RESOURCES := true
 LOCAL_AAPT_FLAGS += --auto-add-overlay \
-                    --extra-packages com.carbon.fibers
+                    --extra-packages com.carbon.fibers \
+                    --extra-packages android.support.v7.cardview
 
 LOCAL_SRC_FILES += $(call all-java-files-under, ../CarbonFibers/src)
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res \
-                      $(LOCAL_PATH)/../CarbonFibers/res
+                      $(LOCAL_PATH)/../CarbonFibers/res \
+                      frameworks/support/v7/cardview/res
 
 LOCAL_JAVA_LIBRARIES += org.cyanogenmod.hardware
 
