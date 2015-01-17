@@ -39,7 +39,9 @@ import com.android.settings.cyanogenmod.qs.QSTiles;
 
 import java.util.Locale;
 
-public class NotificationDrawerSettings extends SettingsPreferenceFragment {
+public class NotificationDrawerSettings extends SettingsPreferenceFragment
+            implements OnPreferenceChangeListener  {
+
     private Preference mQSTiles;
 
     private static final String PREF_QUICK_PULLDOWN = "quick_pulldown";
@@ -61,24 +63,20 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment {
 
         mQuickPulldown = (ListPreference) findPreference(PREF_QUICK_PULLDOWN);
         mSmartPulldown = (ListPreference) findPreference(PREF_SMART_PULLDOWN);
-        if (!DeviceUtils.isPhone(getActivity())) {
-            prefs.removePreference(mQuickPulldown);
-            prefs.removePreference(mSmartPulldown);
-        } else {
-            // Quick Pulldown
-            mQuickPulldown.setOnPreferenceChangeListener(this);
-            int statusQuickPulldown = Settings.System.getInt(getContentResolver(),
-                    Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
-            mQuickPulldown.setValue(String.valueOf(statusQuickPulldown));
-            updateQuickPulldownSummary(statusQuickPulldown);
 
-            // Smart Pulldown
-            mSmartPulldown.setOnPreferenceChangeListener(this);
-            int smartPulldown = Settings.System.getInt(getContentResolver(),
-                    Settings.System.QS_SMART_PULLDOWN, 0);
-            mSmartPulldown.setValue(String.valueOf(smartPulldown));
-            updateSmartPulldownSummary(smartPulldown);
-        }
+        // Quick Pulldown
+        mQuickPulldown.setOnPreferenceChangeListener(this);
+        int statusQuickPulldown = Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
+        mQuickPulldown.setValue(String.valueOf(statusQuickPulldown));
+        updateQuickPulldownSummary(statusQuickPulldown);
+
+        // Smart Pulldown
+        mSmartPulldown.setOnPreferenceChangeListener(this);
+        int smartPulldown = Settings.System.getInt(getContentResolver(),
+                Settings.System.QS_SMART_PULLDOWN, 0);
+        mSmartPulldown.setValue(String.valueOf(smartPulldown));
+        updateSmartPulldownSummary(smartPulldown);
 
         final LockPatternUtils lockPatternUtils = new LockPatternUtils(getActivity());
         mBlockOnSecureKeyguard = (SwitchPreference) findPreference(PREF_BLOCK_ON_SECURE_KEYGUARD);
