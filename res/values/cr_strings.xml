@@ -24,6 +24,7 @@
     <string name="carbon_customization_settings_title">Carbon Customization</string>
     <string name="interface_settings_title">Interface</string>
     <string name="recents_settings_title">Recents</string>
+    <string name="lockscreen_settings_title">LockScreen</string>
 
     <string name="ok">OK</string>
     <string name="dlg_ok">OK</string>
@@ -627,5 +628,9 @@
     <!-- Quick unlock -->
     <string name="unlock_quick_unlock_control_title">Quick unlock</string>
     <string name="unlock_quick_unlock_control_summary">Unlock automatically when the correct PIN/password is entered</string>
+
+    <!-- Lockscreen weather -->
+    <string name="lockscreen_weather_title">Lockscreen weather</string>
+    <string name="lockscreen_weather_summary">SystemUI will be restarted!</string>
 
 </resources>
