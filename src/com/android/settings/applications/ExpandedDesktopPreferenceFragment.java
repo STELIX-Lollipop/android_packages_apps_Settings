@@ -92,6 +92,13 @@ public class ExpandedDesktopPreferenceFragment extends SettingsPreferenceFragmen
 
         WindowManagerPolicyControl.reloadFromSetting(getActivity(),
                 Settings.Global.POLICY_CONTROL);
+
+        mExpandedDesktopState = getExpandedDesktopState(getActivity().getContentResolver());
+        if (mExpandedDesktopState == STATE_USER_CONFIGURABLE) {
+            WindowManagerPolicyControl.reloadFromSetting(getActivity(),
+                    Settings.Global.POLICY_CONTROL);
+        }
+
         mAllPackagesAdapter = new AllPackagesAdapter(getActivity());
 
         mAllPackagesAdapter.notifyDataSetChanged();
