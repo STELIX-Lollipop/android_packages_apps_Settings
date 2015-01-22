@@ -89,6 +89,7 @@ import com.android.settings.fuelgauge.PowerUsageSummary;
 import com.android.settings.notification.NotificationAppList;
 import com.android.settings.notification.OtherSoundSettings;
 import com.android.settings.profiles.NFCProfileTagCallback;
+import com.android.settings.profiles.ProfilesSettings;
 import com.android.settings.quicklaunch.QuickLaunchSettings;
 import com.android.settings.search.DynamicIndexableContentMonitor;
 import com.android.settings.search.Index;
@@ -313,8 +314,9 @@ public class SettingsActivity extends Activity
             QuickLaunchSettings.class.getName(),
             ApnSettings.class.getName(),
             BlacklistSettings.class.getName(),
-            com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
-            CarbonCustomization.class.getName()
+            CarbonCustomization.class.getName(),
+            ProfilesSettings.class.getName(),
+            com.android.settings.cyanogenmod.PrivacySettings.class.getName()
     };
 
 
