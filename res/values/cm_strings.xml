@@ -894,7 +894,7 @@
     <!-- CM Legal -->
     <string name="cmlicense_title">CyanogenMod legal</string>
     <string name="settings_cmlicense_activity_title">CyanogenMod legal</string>
-    <string name="settings_cmlicense_activity_unreachable">You don\'t have a data connection. To view this information now, go to %s from any computer connected
+    <string name="settings_cmlicense_activity_unreachable">You don\'t have a data connection. To view this information now, go to %s from any computer connected</string>
 
     <!-- Screen security -->
     <string name="unlock_quick_unlock_control_title">Quick unlock</string>
