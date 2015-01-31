@@ -18,19 +18,43 @@
         android:title="@string/navigation_bar_title"
         android:key="navbar_settings">
 
-    <!-- Navbar height -->
-    <ListPreference
-        android:key="navigation_bar_height"
-        android:dialogTitle="@string/navigation_bar_height"
-        android:title="@string/navigation_bar_height"
-        android:entries="@array/navigation_bar_height_entries"
-        android:entryValues="@array/navigation_bar_height_values"
-        android:defaultValue="48"
-        android:persistent="false" />
+    <PreferenceCategory
+        android:key="navigation_bar"
+        android:title="@string/navigation_bar_category" >
 
-    <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
-        android:key="dev_force_show_navbar"
-        android:title="@string/force_show_navbar_title"
-        android:summary="@string/force_show_navbar_summary"
-        android:defaultValue="true" />
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="navigation_bar_left"
+            android:title="@string/navigation_bar_left_title"
+            android:summary="@string/navigation_bar_left_summary"
+            android:defaultValue="false" />
+
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+                android:key="navigation_bar_menu_arrow_keys"
+                android:title="@string/navigation_bar_arrow_keys_title"
+                android:summary="@string/navigation_bar_arrow_keys_summary"
+                android:defaultValue="false" />
+
+        <PreferenceScreen
+            android:key="navigation_bar"
+            android:fragment="com.android.settings.cyanogenmod.NavBar"
+            android:title="@string/navigation_bar_title" />
+
+        <!-- Navbar height -->
+        <ListPreference
+            android:key="navigation_bar_height"
+            android:dialogTitle="@string/navigation_bar_height"
+            android:title="@string/navigation_bar_height"
+            android:entries="@array/navigation_bar_height_entries"
+            android:entryValues="@array/navigation_bar_height_values"
+            android:defaultValue="48"
+            android:persistent="false" />
+
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="dev_force_show_navbar"
+            android:title="@string/force_show_navbar_title"
+            android:summary="@string/force_show_navbar_summary"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>
