@@ -278,7 +278,7 @@
     <string name="no_filters_title">No filters set</string>
 
     <!-- About phone screen, CyanogenMod version -->
-    <string name="mod_version">CarbonROM version</string>
+    <string name="mod_version">STELIX version</string>
     <string name="mod_version_default">Unknown</string>
     <string name="model_name">Model name</string>
 
