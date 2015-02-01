@@ -638,6 +638,9 @@
     <string name="qs_screenrecord_tile">Screenrecord</string>
     <string name="qs_sync_tile">Sync</string>
 
+    <!-- QuickSettings 4 columns -->
+    <string name="qs_four_columns_title">Show four tiles per row</string>
+
     <!-- Doze options -->
     <string name="display_category_doze_options_title">Ambient display (doze) options</string>
     <string name="doze_timeout_title">Doze pulse timeout</string>
