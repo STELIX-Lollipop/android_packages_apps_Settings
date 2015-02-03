@@ -33,7 +33,7 @@ import com.android.settings.WirelessSettings;
 import com.android.settings.accessibility.AccessibilitySettings;
 import com.android.settings.bluetooth.BluetoothSettings;
 import com.android.settings.cyanogenmod.NotificationDrawerSettings;
-import com.android.settings.cyanogenmod.StatusBarSettings;
+import com.android.settings.carbon.CarbonStatusBarSettings;
 import com.android.settings.deviceinfo.Memory;
 import com.android.settings.fuelgauge.BatterySaverSettings;
 import com.android.settings.fuelgauge.PowerUsageSummary;
@@ -268,7 +268,7 @@ public final class SearchIndexableResources {
         sResMap.put(StatusBarSettings.class.getName(),
                 new SearchIndexableResource(
                         Ranking.getRankForClassName(StatusBarSettings.class.getName()),
-                        R.xml.status_bar_settings,
+                        R.xml.carbon_status_bar_settings,
                         StatusBarSettings.class.getName(),
                         R.drawable.ic_settings_extdesk_hidenavbar));
 

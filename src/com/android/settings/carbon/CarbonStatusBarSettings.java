@@ -185,7 +185,7 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
                             new ArrayList<SearchIndexableResource>();
 
                     SearchIndexableResource sir = new SearchIndexableResource(context);
-                    sir.xmlResId = R.xml.status_bar_settings;
+                    sir.xmlResId = R.xml.carbon_status_bar_settings;
                     result.add(sir);
 
                     return result;
