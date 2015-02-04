@@ -49,6 +49,11 @@
             android:defaultValue="48"
             android:persistent="false" />
 
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="navigation_bar_tint"
+            android:title="@string/navbar_button_tint_title"
+            android:defaultValue="#ffffff" />
+
         <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="dev_force_show_navbar"
             android:title="@string/force_show_navbar_title"

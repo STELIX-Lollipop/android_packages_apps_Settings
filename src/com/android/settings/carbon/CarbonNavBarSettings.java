@@ -27,12 +27,15 @@ import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.util.Helpers;
+
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class CarbonNavBarSettings extends SettingsPreferenceFragment
         implements OnSharedPreferenceChangeListener,
@@ -41,10 +44,11 @@ public class CarbonNavBarSettings extends SettingsPreferenceFragment
     private static final String TAG = "CarbonNavBarSettings";
 
     private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
+    private static final String NAVIGATION_BAR_TINT = "navigation_bar_tint";
 
     private ListPreference mNavigationBarHeight;
-
     private PreferenceScreen mNavBarSettings;
+    private ColorPickerPreference mNavbarButtonTint;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -67,6 +71,14 @@ public class CarbonNavBarSettings extends SettingsPreferenceFragment
         mNavigationBarHeight.setValue(String.valueOf(statusNavigationBarHeight));
         mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntry());
 
+        // Navigation bar button color
+        mNavbarButtonTint = (ColorPickerPreference) findPreference(NAVIGATION_BAR_TINT);
+        mNavbarButtonTint.setOnPreferenceChangeListener(this);
+        int intColor = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.NAVIGATION_BAR_TINT, 0xffffffff);
+        String hexColor = String.format("#%08x", (0xffffffff & intColor));
+        mNavbarButtonTint.setSummary(hexColor);
+        mNavbarButtonTint.setNewPreviewColor(intColor);
     }
 
     @Override
@@ -98,9 +110,16 @@ public class CarbonNavBarSettings extends SettingsPreferenceFragment
             Settings.System.putInt(resolver, Settings.System.NAVIGATION_BAR_HEIGHT,
                     statusNavigationBarHeight);
             mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntries()[index]);
+        } else if (preference == mNavbarButtonTint) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(objValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_TINT, intHex);
+            return true;
         }
-
-        return true;
+        return false;
     }
 }
 
