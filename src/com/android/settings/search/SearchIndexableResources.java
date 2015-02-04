@@ -265,11 +265,11 @@ public final class SearchIndexableResources {
                         ButtonSettings.class.getName(),
                         R.drawable.ic_settings_buttons));
 
-        sResMap.put(StatusBarSettings.class.getName(),
+        sResMap.put(CarbonStatusBarSettings.class.getName(),
                 new SearchIndexableResource(
-                        Ranking.getRankForClassName(StatusBarSettings.class.getName()),
+                        Ranking.getRankForClassName(CarbonStatusBarSettings.class.getName()),
                         R.xml.carbon_status_bar_settings,
-                        StatusBarSettings.class.getName(),
+                        CarbonStatusBarSettings.class.getName(),
                         R.drawable.ic_settings_extdesk_hidenavbar));
 
         sResMap.put(NotificationDrawerSettings.class.getName(),

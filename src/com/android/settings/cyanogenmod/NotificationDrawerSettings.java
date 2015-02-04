@@ -45,7 +45,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class NotificationDrawerSettings extends SettingsPreferenceFragment implements Indexable {
+public class NotificationDrawerSettings extends SettingsPreferenceFragment
+    implements OnPreferenceChangeListener, Indexable {
 
     private Preference mQSTiles;
 
