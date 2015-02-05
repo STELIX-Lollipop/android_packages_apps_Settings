@@ -15,12 +15,12 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        android:title="@string/navigation_bar_title"
+        android:title="@string/navigation_bar_category"
         android:key="navbar_settings">
 
     <PreferenceCategory
         android:key="navigation_bar"
-        android:title="@string/navigation_bar_category" >
+        android:title="@string/navigation_bar_title" >
 
         <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="navigation_bar_left"
@@ -37,7 +37,7 @@
         <PreferenceScreen
             android:key="navigation_bar"
             android:fragment="com.android.settings.cyanogenmod.NavBar"
-            android:title="@string/navigation_bar_category" />
+            android:title="@string/navigation_bar_title" />
 
         <!-- Navbar height -->
         <ListPreference
