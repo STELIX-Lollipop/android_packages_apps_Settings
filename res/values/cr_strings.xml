@@ -394,7 +394,9 @@
     <string name="heads_up_time_out_6sec">6 seconds</string>
     <string name="heads_up_time_out_8sec">8 seconds</string>
     <string name="heads_up_time_out_10sec">10 seconds</string>
-    <string name="heads_up_time_out_never">Never</string>
+    <string name="heads_up_switch">Heads up</string>
+    <string name="heads_up_switch_enabled">Heads up enabled</string>
+    <string name="heads_up_switch_disabled">Heads up disabled</string>
 
     <!-- Lock Gesture settings -->
     <!-- Security & location settings screen, setting option name -->
