@@ -630,6 +630,7 @@
 
     <!-- Quick Settings -->
     <string name="quick_settings_powermenu_label">Power Menu</string>
+    <string name="quick_settings_sleepscreen_label">Sleep Screen</string>
 
     <!-- Quick unlock -->
     <string name="unlock_quick_unlock_control_title">Quick unlock</string>
