@@ -154,7 +154,7 @@ public class QSTileHolder {
                 stringId = R.string.qs_screenrecord_tile;
                 break;
             case QSConstants.TILE_SLEEPSCREEN:
-                resourceName = "ic_qs_sleepscreen";
+                resourceName = "ic_qs_sleep";
                 stringId = R.string.quick_settings_sleepscreen_label;
                 break;
             case QSConstants.TILE_SYNC:
