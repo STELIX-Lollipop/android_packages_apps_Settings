@@ -55,10 +55,12 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
 
     private static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
     private static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+    private static final String KEY_CARRIERLABEL_PREFERENCE = "carrier_options";
 
     private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
 
+    private PreferenceScreen mCarrierLabel;
     private ListPreference mStatusBarBattery;
     private ListPreference mStatusBarBatteryShowPercent;
 
@@ -66,7 +68,7 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.carbon_status_bar_settings);
-
+        PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
 
         mStatusBarBattery = (ListPreference) findPreference(STATUS_BAR_BATTERY_STYLE);
@@ -88,6 +90,11 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
 
         if (TelephonyManager.getDefault().getPhoneCount() <= 1) {
             removePreference(Settings.System.STATUS_BAR_MSIM_SHOW_EMPTY_ICONS);
+        }
+
+        mCarrierLabel = (PreferenceScreen) prefSet.findPreference(KEY_CARRIERLABEL_PREFERENCE);
+        if (Utils.isWifiOnly(getActivity())) {
+            prefSet.removePreference(mCarrierLabel);
         }
     }
 
