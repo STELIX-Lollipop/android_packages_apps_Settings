@@ -20,34 +20,39 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceScreen
-        android:key="status_bar"
+        android:id="@+id/status_bar_settings"
         android:fragment="com.android.settings.carbon.CarbonStatusBarSettings"
         android:icon="@drawable/ic_settings_extdesk_hidenavbar"
-        android:title="@string/status_bar_title" />
+        android:title="@string/status_bar_title"
+        settings:advanced="true" />
 
     <PreferenceScreen
-        android:key="navbar_settings"
+        android:id="@+id/navbar_settings"
         android:fragment="com.android.settings.carbon.CarbonNavBarSettings"
         android:icon="@drawable/ic_settings_navigation_bar_teal"
-        android:title="@string/navigation_bar_category" />
+        android:title="@string/navigation_bar_category"
+        settings:advanced="true" />
 
     <PreferenceScreen
-        android:key="interface_settings"
+        android:id="@+id/interface_settings"
         android:fragment="com.android.settings.carbon.CarbonInterfaceSettings"
         android:icon="@drawable/ic_settings_interface"
-        android:title="@string/interface_settings_title" />
+        android:title="@string/interface_settings_title"
+        settings:advanced="true" />
 
     <PreferenceScreen
-        android:key="recents_settings"
+        android:id="@+id/recents_settings"
         android:fragment="com.android.settings.carbon.CarbonRecentsSettings"
         android:icon="@drawable/ic_settings_date_time"
-        android:title="@string/recents_settings_title" />
+        android:title="@string/recents_settings_title"
+        settings:advanced="true" />
 
     <!-- Notification drawer -->
     <PreferenceScreen
         android:id="@+id/notification_drawer_settings"
         android:title="@string/notification_drawer_title"
         android:fragment="com.android.settings.cyanogenmod.NotificationDrawerSettings"
-        android:icon="@drawable/ic_settings_notification_drawer" />
+        android:icon="@drawable/ic_settings_notification_drawer"
+        settings:advanced="true" />
 
 </PreferenceScreen>

@@ -16,9 +16,12 @@
 
 package com.android.settings;
 
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -70,9 +73,9 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final String KEY_SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
     private static final String DISABLE_NAV_KEYS = "disable_nav_keys";
     private static final String KEY_NAVIGATION_BAR_LEFT = "navigation_bar_left";
+    private static final String KEY_NAVIGATION_RECENTS_LONG_PRESS = "navigation_recents_long_press";
     private static final String KEY_POWER_END_CALL = "power_end_call";
     private static final String KEY_HOME_ANSWER_CALL = "home_answer_call";
-    private static final String KEY_BLUETOOTH_INPUT_SETTINGS = "bluetooth_input_settings";
 
     private static final String CATEGORY_POWER = "power_key";
     private static final String CATEGORY_HOME = "home_key";
@@ -83,7 +86,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final String CATEGORY_CAMERA = "camera_key";
     private static final String CATEGORY_VOLUME = "volume_keys";
     private static final String CATEGORY_BACKLIGHT = "key_backlight";
-    private static final String CATEGORY_NAVBAR = "navigation_bar";
+    private static final String CATEGORY_NAVBAR = "navigation_bar_category";
 
     // Available custom actions to perform on a key press.
     // Must match values for KEY_HOME_LONG_PRESS_ACTION in:
@@ -120,6 +123,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private SwitchPreference mSwapVolumeButtons;
     private SwitchPreference mDisableNavigationKeys;
     private SwitchPreference mNavigationBarLeftPref;
+    private ListPreference mNavigationRecentsLongPressAction;
     private SwitchPreference mPowerEndCall;
     private SwitchPreference mHomeAnswerCall;
 
@@ -151,6 +155,10 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         // Navigation bar left
         mNavigationBarLeftPref = (SwitchPreference) findPreference(KEY_NAVIGATION_BAR_LEFT);
 
+        // Navigation bar recents long press activity needs custom setup
+        mNavigationRecentsLongPressAction =
+                initRecentsLongPressAction(KEY_NAVIGATION_RECENTS_LONG_PRESS);
+
         HashMap<String, String> prefsToRemove = (HashMap<String, String>)
                 getPreferencesToRemove(this, getActivity());
         for (String key : prefsToRemove.keySet()) {
@@ -180,16 +188,15 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                     Settings.System.SWAP_VOLUME_KEYS_ON_ROTATION, 0);
             mSwapVolumeButtons = (SwitchPreference)
                     prefScreen.findPreference(KEY_SWAP_VOLUME_BUTTONS);
-            mSwapVolumeButtons.setChecked(swapVolumeKeys > 0);
+            if (mSwapVolumeButtons != null) {
+                mSwapVolumeButtons.setChecked(swapVolumeKeys > 0);
+            }
         }
 
         if (mNavigationPreferencesCat.getPreferenceCount() == 0) {
             // Hide navigation bar category
             prefScreen.removePreference(mNavigationPreferencesCat);
         }
-
-        Utils.updatePreferenceToSpecificActivityFromMetaDataOrRemove(getActivity(),
-                getPreferenceScreen(), KEY_BLUETOOTH_INPUT_SETTINGS);
     }
 
     private static Map<String, String> getPreferencesToRemove(ButtonSettings settings,
@@ -380,8 +387,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         try {
             // Only show the navigation bar category on devices that have a navigation bar
             // unless we are forcing it via development settings
-            boolean forceNavbar = android.provider.Settings.System.getInt(resolver,
-                    android.provider.Settings.System.DEV_FORCE_SHOW_NAVBAR, 0) == 1;
+            boolean forceNavbar = android.provider.Settings.Secure.getInt(resolver,
+                    android.provider.Settings.Secure.DEV_FORCE_SHOW_NAVBAR, 0) == 1;
             boolean hasNavBar = WindowManagerGlobal.getWindowManagerService().hasNavigationBar()
                     || forceNavbar;
 
@@ -432,9 +439,75 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
 
     private ListPreference initActionList(String key, int value) {
         ListPreference list = (ListPreference) getPreferenceScreen().findPreference(key);
+        if (list == null) return null;
         list.setValue(Integer.toString(value));
         list.setSummary(list.getEntry());
         list.setOnPreferenceChangeListener(this);
+        return list;
+    }
+
+    private ListPreference initRecentsLongPressAction(String key) {
+        ListPreference list = (ListPreference) getPreferenceScreen().findPreference(key);
+        list.setOnPreferenceChangeListener(this);
+
+        // Read the componentName from Settings.Secure, this is the user's prefered setting
+        String componentString = Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY);
+        ComponentName targetComponent = null;
+        if (componentString == null) {
+            list.setSummary(getString(R.string.hardware_keys_action_last_app));
+        } else {
+            targetComponent = ComponentName.unflattenFromString(componentString);
+        }
+
+        // Dyanamically generate the list array,
+        // query PackageManager for all Activites that are registered for ACTION_RECENTS_LONG_PRESS
+        PackageManager pm = getPackageManager();
+        Intent intent = new Intent(Intent.ACTION_RECENTS_LONG_PRESS);
+        List<ResolveInfo> recentsActivities = pm.queryIntentActivities(intent,
+                PackageManager.MATCH_DEFAULT_ONLY);
+        if (recentsActivities.size() == 0) {
+            // No entries available, disable
+            list.setSummary(getString(R.string.hardware_keys_action_last_app));
+            Settings.Secure.putString(getContentResolver(),
+                    Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY, null);
+            list.setEnabled(false);
+            return list;
+        }
+
+        CharSequence[] entries = new CharSequence[recentsActivities.size() + 1];
+        CharSequence[] values = new CharSequence[recentsActivities.size() + 1];
+        // First entry is always default last app
+        entries[0] = getString(R.string.hardware_keys_action_last_app);
+        values[0] = "";
+        list.setValue(values[0].toString());
+        int i = 1;
+        for (ResolveInfo info : recentsActivities) {
+            try {
+                // Use pm.getApplicationInfo for the label,
+                // we cannot rely on ResolveInfo that comes back from queryIntentActivities.
+                entries[i] = pm.getApplicationInfo(info.activityInfo.packageName, 0).loadLabel(pm);
+            } catch (PackageManager.NameNotFoundException e) {
+                Log.e(TAG, "Error package not found: " + info.activityInfo.packageName, e);
+                // Fallback to package name
+                entries[i] = info.activityInfo.packageName;
+            }
+
+            // Set the value to the ComponentName that will handle this intent
+            ComponentName entryComponent = new ComponentName(info.activityInfo.packageName,
+                    info.activityInfo.name);
+            values[i] = entryComponent.flattenToString();
+            if (targetComponent != null) {
+                if (entryComponent.equals(targetComponent)) {
+                    // Update the selected value and the preference summary
+                    list.setSummary(entries[i]);
+                    list.setValue(values[i].toString());
+                }
+            }
+            i++;
+        }
+        list.setEntries(entries);
+        list.setEntryValues(values);
         return list;
     }
 
@@ -483,6 +556,20 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             handleActionListChange(mVolumeKeyCursorControl, newValue,
                     Settings.System.VOLUME_KEY_CURSOR_CONTROL);
             return true;
+        } else if (preference == mNavigationRecentsLongPressAction) {
+            // RecentsLongPressAction is handled differently because it intentionally uses
+            // Settings.System
+            String putString = (String) newValue;
+            int index = mNavigationRecentsLongPressAction.findIndexOfValue(putString);
+            CharSequence summary = mNavigationRecentsLongPressAction.getEntries()[index];
+            // Update the summary
+            mNavigationRecentsLongPressAction.setSummary(summary);
+            if (putString.length() == 0) {
+                putString = null;
+            }
+            Settings.Secure.putString(getContentResolver(),
+                    Settings.Secure.RECENTS_LONG_PRESS_ACTIVITY, putString);
+            return true;
         }
         return false;
     }
@@ -492,8 +579,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         final int defaultBrightness = context.getResources().getInteger(
                 com.android.internal.R.integer.config_buttonBrightnessSettingDefault);
 
-        Settings.System.putInt(context.getContentResolver(),
-                Settings.System.DEV_FORCE_SHOW_NAVBAR, enabled ? 1 : 0);
+        Settings.Secure.putInt(context.getContentResolver(),
+                Settings.Secure.DEV_FORCE_SHOW_NAVBAR, enabled ? 1 : 0);
         KeyDisabler.setActive(enabled);
 
         /* Save/restore button timeouts to disable them in softkey mode */
@@ -519,8 +606,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     }
 
     private void updateDisableNavkeysOption() {
-        boolean enabled = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.DEV_FORCE_SHOW_NAVBAR, 0) != 0;
+        boolean enabled = Settings.Secure.getInt(getActivity().getContentResolver(),
+                Settings.Secure.DEV_FORCE_SHOW_NAVBAR, 0) != 0;
 
         mDisableNavigationKeys.setChecked(enabled);
     }
@@ -572,8 +659,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
             return;
         }
 
-        writeDisableNavkeysOption(context, Settings.System.getInt(context.getContentResolver(),
-                Settings.System.DEV_FORCE_SHOW_NAVBAR, 0) != 0);
+        writeDisableNavkeysOption(context, Settings.Secure.getInt(context.getContentResolver(),
+                Settings.Secure.DEV_FORCE_SHOW_NAVBAR, 0) != 0);
     }
 
 
@@ -650,14 +737,6 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                 @Override
                 public List<String> getNonIndexableKeys(Context context) {
                     ArrayList<String> result = new ArrayList<String>();
-
-                    Intent intent =
-                            new Intent("com.cyanogenmod.action.LAUNCH_BLUETOOTH_INPUT_SETTINGS");
-                    intent.setClassName("com.cyanogenmod.settings.device",
-                            "com.cyanogenmod.settings.device.BluetoothInputSettings");
-                    if (!Utils.doesIntentResolve(context, intent)) {
-                        result.add(KEY_BLUETOOTH_INPUT_SETTINGS);
-                    }
 
                     Map<String, String> items = getPreferencesToRemove(null, context);
                     for (String key : items.keySet()) {
