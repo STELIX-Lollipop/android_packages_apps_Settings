@@ -95,6 +95,7 @@ public class CarbonStatusBar extends SettingsPreferenceFragment {
             frags[1] = new StatusBarClockStyle();
             frags[2] = new CarbonBatteryBarSettings();
             frags[3] = new Traffic();
+            frags[4] = new QSColors();
         }
 
         @Override
@@ -119,7 +120,8 @@ public class CarbonStatusBar extends SettingsPreferenceFragment {
                     getString(R.string.status_bar_title),
                     getString(R.string.status_bar_clock),
                     getString(R.string.battery_bar_title),
-                    getString(R.string.network_traffic_title)};
+                    getString(R.string.network_traffic_title),
+                    getString(R.string.qs_colors_title)};
         return titleString;
     }
 }
