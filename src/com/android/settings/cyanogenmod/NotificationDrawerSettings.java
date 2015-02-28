@@ -50,11 +50,9 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment
 
     private Preference mQSTiles;
 
-    private static final String PREF_QUICK_PULLDOWN = "quick_pulldown";
     private static final String PREF_SMART_PULLDOWN = "smart_pulldown";
     private static final String PREF_BLOCK_ON_SECURE_KEYGUARD = "block_on_secure_keyguard";
 
-    ListPreference mQuickPulldown;
     ListPreference mSmartPulldown;
     SwitchPreference mBlockOnSecureKeyguard;
 
@@ -67,22 +65,17 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment
 
         PreferenceScreen prefs = getPreferenceScreen();
 
-        mQuickPulldown = (ListPreference) findPreference(PREF_QUICK_PULLDOWN);
         mSmartPulldown = (ListPreference) findPreference(PREF_SMART_PULLDOWN);
-
-        // Quick Pulldown
-        mQuickPulldown.setOnPreferenceChangeListener(this);
-        int statusQuickPulldown = Settings.System.getInt(getContentResolver(),
-                Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
-        mQuickPulldown.setValue(String.valueOf(statusQuickPulldown));
-        updateQuickPulldownSummary(statusQuickPulldown);
-
-        // Smart Pulldown
-        mSmartPulldown.setOnPreferenceChangeListener(this);
-        int smartPulldown = Settings.System.getInt(getContentResolver(),
-                Settings.System.QS_SMART_PULLDOWN, 0);
-        mSmartPulldown.setValue(String.valueOf(smartPulldown));
-        updateSmartPulldownSummary(smartPulldown);
+        if (!DeviceUtils.isPhone(getActivity())) {
+            prefs.removePreference(mSmartPulldown);
+        } else {
+            // Smart Pulldown
+            mSmartPulldown.setOnPreferenceChangeListener(this);
+            int smartPulldown = Settings.System.getInt(getContentResolver(),
+                    Settings.System.QS_SMART_PULLDOWN, 0);
+            mSmartPulldown.setValue(String.valueOf(smartPulldown));
+            updateSmartPulldownSummary(smartPulldown);
+        }
 
         final LockPatternUtils lockPatternUtils = new LockPatternUtils(getActivity());
         mBlockOnSecureKeyguard = (SwitchPreference) findPreference(PREF_BLOCK_ON_SECURE_KEYGUARD);
@@ -106,14 +99,7 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mQuickPulldown) {
-            int statusQuickPulldown = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
-                    statusQuickPulldown);
-            updateQuickPulldownSummary(statusQuickPulldown);
-            return true;
-        } else if (preference == mSmartPulldown) {
+        if (preference == mSmartPulldown) {
             int smartPulldown = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.QS_SMART_PULLDOWN,
                     smartPulldown);
@@ -150,22 +136,6 @@ public class NotificationDrawerSettings extends SettingsPreferenceFragment
             // Remove title capitalized formatting
             type = type.toLowerCase();
             mSmartPulldown.setSummary(res.getString(R.string.smart_pulldown_summary, type));
-        }
-    }
-
-    private void updateQuickPulldownSummary(int value) {
-        Resources res = getResources();
-
-        if (value == 0) {
-            // quick pulldown deactivated
-            mQuickPulldown.setSummary(res.getString(R.string.quick_pulldown_off));
-        } else {
-            Locale l = Locale.getDefault();
-            boolean isRtl = TextUtils.getLayoutDirectionFromLocale(l) == View.LAYOUT_DIRECTION_RTL;
-            String direction = res.getString(value == 2
-                    ? (isRtl ? R.string.quick_pulldown_right : R.string.quick_pulldown_left)
-                    : (isRtl ? R.string.quick_pulldown_left : R.string.quick_pulldown_right));
-            mQuickPulldown.setSummary(res.getString(R.string.summary_quick_pulldown, direction));
         }
     }
 
