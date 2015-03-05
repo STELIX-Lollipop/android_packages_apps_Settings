@@ -777,4 +777,6 @@
     <string name="timeout_750">0,75 seconds</string>
     <string name="timeout_500">0,5 second</string>
 
+    <!-- Slim Shortcuts -->
+    <string name="slim_shortcut_picker">Slim Actions</string>
 </resources>
