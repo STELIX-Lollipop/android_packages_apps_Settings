@@ -176,6 +176,9 @@ public class QSTileHolder {
             case QSConstants.TILE_EXPANDED_DESKTOP:
                 resourceName = "ic_qs_expanded_desktop";
                 stringId = R.string.qs_expanded_desktop_tile;
+            case QSConstants.TILE_LIVE_DISPLAY:
+                resourceName ="ic_livedisplay_day";
+                stringId = R.string.live_display_title;
                 break;
             default:
                 return null;

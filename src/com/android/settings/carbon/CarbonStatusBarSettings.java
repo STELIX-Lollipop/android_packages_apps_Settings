@@ -31,7 +31,10 @@ import android.preference.SwitchPreference;
 import android.provider.SearchIndexableResource;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
+import android.telephony.TelephonyManager;
+import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.View;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -77,7 +80,6 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
         mClockStyle = (PreferenceScreen) getPreferenceScreen().findPreference(KEY_STATUS_BAR_CLOCK);
         mTrafficMonitor = (PreferenceScreen) getPreferenceScreen().findPreference(KEY_TRAFFIC_MONITOR);
         mBatteryBar = (PreferenceScreen) getPreferenceScreen().findPreference(KEY_BATTERY_BAR);
-
         mStatusBarBattery = (ListPreference) findPreference(STATUS_BAR_BATTERY_STYLE);
         mStatusBarBatteryShowPercent =
                 (ListPreference) findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
@@ -95,6 +97,9 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
         enableStatusBarBatteryDependents(batteryStyle);
         mStatusBarBatteryShowPercent.setOnPreferenceChangeListener(this);
 
+        if (TelephonyManager.getDefault().getPhoneCount() <= 1) {
+            removePreference(Settings.System.STATUS_BAR_MSIM_SHOW_EMPTY_ICONS);
+        }
         updateBatteryBarDescription();
         updateClockStyleDescription();
         updateTrafficMonitorDescription();

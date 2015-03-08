@@ -90,6 +90,7 @@ import com.android.settings.deviceinfo.Memory;
 import com.android.settings.deviceinfo.UsbSettings;
 import com.android.settings.fuelgauge.BatterySaverSettings;
 import com.android.settings.fuelgauge.PowerUsageSummary;
+import com.android.settings.livedisplay.LiveDisplay;
 import com.android.settings.lockscreen.LockScreenSettings;
 import com.android.settings.notification.NotificationAppList;
 import com.android.settings.notification.NotificationManagerSettings;
@@ -323,7 +324,8 @@ public class SettingsActivity extends Activity
             com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
             NotificationManagerSettings.class.getName(),
             LockScreenSettings.class.getName(),
-            ExpandedDesktopPreferenceFragment.class.getName()
+            ExpandedDesktopPreferenceFragment.class.getName(),
+            LiveDisplay.class.getName()
     };
 
 
@@ -1251,7 +1253,10 @@ public class SettingsActivity extends Activity
                         removeTile = true;
                     }
                 } else if (id == R.id.performance_settings) {
-                    if (!(pm.hasPowerProfiles() || (showDev && !Build.TYPE.equals("user")))) {
+                    final boolean forceHide =
+                            getResources().getBoolean(R.bool.config_hidePerformanceSettings);
+                    if (forceHide ||
+                            !(pm.hasPowerProfiles() || (showDev && !Build.TYPE.equals("user")))) {
                         removeTile = true;
                     }
                 }
