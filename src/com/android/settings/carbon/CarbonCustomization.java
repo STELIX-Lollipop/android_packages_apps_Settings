@@ -33,12 +33,19 @@ import com.android.settings.SettingsPreferenceFragment;
 public class CarbonCustomization extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
+    private static final String PREF_ADVANCED_SETTINGS = "advanced_settings";
+
+    private PreferenceScreen mAdvancedSettings;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.carbon_customization);
 
+        if (!needsAdvancedSettings()) {
+            getPreferenceScreen().removePreference(mAdvancedSettings);
+        }
     }
 
     @Override
@@ -48,5 +55,9 @@ public class CarbonCustomization extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         return false;
+    }
+
+    private boolean needsAdvancedSettings() {
+        return getResources().getBoolean(R.bool.has_advanced_settings);
     }
 }
