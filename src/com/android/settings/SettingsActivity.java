@@ -127,6 +127,7 @@ import com.android.settings.wifi.WifiSettings;
 import com.android.settings.wifi.p2p.WifiP2pSettings;
 
 import com.android.settings.carbon.*;
+import com.android.settings.aicp.*;
 import com.carbon.fibers.*;
 import com.carbon.fibers.CarbonSettingsActivity;
 
@@ -330,7 +331,8 @@ public class SettingsActivity extends Activity
             LockScreenSettings.class.getName(),
             ExpandedDesktopPreferenceFragment.class.getName(),
             LiveDisplay.class.getName(),
-            DisplayRotation.class.getName()
+            DisplayRotation.class.getName(),
+            LockScreenWeatherSettings.class.getName()
     };
 
 
