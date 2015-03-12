@@ -554,7 +554,7 @@
     <string name="force_show_navbar_title">Show NavBar</string>
     <string name="force_show_navbar_summary">Force to show NavBar</string>
 
-    <!-- Recents Search Bar Switcher -->
+    <!-- Search Bar Switcher -->
     <string name="recents_show_searchbar">Show Search Bar in Recents</string>
     <string name="recents_show_searchbar_summary">Enable or disable the Google search bar in the recents menu</string>
 
