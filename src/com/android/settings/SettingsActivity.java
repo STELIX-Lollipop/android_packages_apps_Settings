@@ -332,7 +332,8 @@ public class SettingsActivity extends Activity
             ExpandedDesktopPreferenceFragment.class.getName(),
             LiveDisplay.class.getName(),
             DisplayRotation.class.getName(),
-            LockScreenWeatherSettings.class.getName()
+            LockScreenWeatherSettings.class.getName(),
+            LockScreenColorSettings.class.getName()
     };
 
 
