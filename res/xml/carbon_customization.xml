@@ -57,9 +57,9 @@
 
     <!-- Advanced Settings -->
     <PreferenceScreen
-        android:key="advanced_settings"
+        android:key="advanced_device_settings"
         android:icon="@drawable/ic_settings_advanced_teal"
-        android:title="@string/advanced_sound_title" >
+        android:title="@string/advanced_options_title" >
         <intent
                 android:action="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS"
                 android:targetPackage="com.cyanogenmod.settings.device"

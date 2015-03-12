@@ -33,18 +33,18 @@ import com.android.settings.SettingsPreferenceFragment;
 public class CarbonCustomization extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
-    private static final String PREF_ADVANCED_SETTINGS = "advanced_settings";
+    private static final String KEY_ADVANCED_DEVICE_SETTINGS = "advanced_device_settings";
 
-    private PreferenceScreen mAdvancedSettings;
+    private PreferenceScreen mAdvancedDeviceSettings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.carbon_customization);
-
+        mAdvancedDeviceSettings = (PreferenceScreen) findPreference(KEY_ADVANCED_DEVICE_SETTINGS);
         if (!needsAdvancedSettings()) {
-            getPreferenceScreen().removePreference(mAdvancedSettings);
+            getPreferenceScreen().removePreference(mAdvancedDeviceSettings);
         }
     }
 
