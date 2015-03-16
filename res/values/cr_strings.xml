@@ -15,17 +15,80 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- STELIX Carbon Team -->
+    <string name="carbon_title">STELIX Carbon Team</string>
     <string name="stelix_version">STELIX version</string>
+    <string name="about_stelix_rom">AfterMarket Android ROM</string>
+
+    <!-- Layout dev_card strings -->
+    <string name="donate">Donate</string>
+    <string name="email">Email</string>
+    <string name="googleplus">Google+</string>
+    <string name="github">Github</string>
+    <string name="twitter">Twitter</string>
+
+    <string name="status_dev">Developer</string>
+    <string name="status_designers">Designer</string>
+    <string name="status_pr">Public Relations &amp; Social Media</string>
+    <string name="status_gerrit">Gerrit Maintainer</string>
+    <string name="status_core_dev">Core Developer</string>
+    <string name="status_dev_and_co_founder">Developer / Co-Founder</string>
 
     <!-- Carbon Fibers -->
-    <string name="carbon_fibers_title">Carbon Fibers</string>
-    <string name="about_carbon_rom">About CarbonROM</string>
+    <string name="app_name">STELIX Carbon Fibers</string>
+    <string name="carbon_fibers_title">STELIX Carbon Fibers</string>
+    <string name="carbon_about_title">About STELIX CarbonROM</string>
+
+    <!-- Share to clipboard -->
+    <string name="clipboard_notification">Copied to clipboard</string>
+
+    <!-- Header Strings -->
+    <string name="user_interface">Interface</string>
+    <string name="bars">Bar Interface</string>
+    <string name="system">System</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="add">Add</string>
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+    <string name="reset_message">Reset all entries to default?</string>
+    <string name="attention">Attention</string>
+    <string name="empty">Empty</string>
+    <string name="delete">Delete</string>
+    <string name="default_string">Default</string>
+    <string name="menu_cancel">Discard</string>
+    <string name="disabled">Disabled</string>
+    <string name="additional_options_title">Additional options</string>
+
+    <!-- Activity titles defined in AndroidManifest.xml -->
+    <string name="title_clipboard_share">Copy to Clipboard</string>
+
+    <!-- T-Mobile Theme chooser settings  -->
+    <string name="themes_title">Themes</string>
+
+    <!-- Share to clipboard -->
+    <string name="clipboard_notification">Copied to clipboard</string>
+
+    <!-- Header Summaries -->
+    <string name="header_summary" translatable="false">@null</string>
+
+    <!-- Menu Strings -->
+    <string name="menu_main_activity_change_locale">Locale</string>
+
+    <!--  Other device settings -->
+    <string name="more_device_controls_title">Device tunables</string>
+    <string name="more_device_settings_title">Other device options</string>
 
     <!-- Carbon Customization Settings Dashboard -->
     <string name="header_category_customization">Customization</string>
     <string name="carbon_customization_settings_title">Carbon Customization</string>
     <string name="interface_settings_title">Interface</string>
     <string name="recents_settings_title">Recents</string>
+
+    <!-- Advanced Settings -->
+    <string name="advanced_options_title">Advanced options</string>
+    <string name="touch_screen_gesture_title">Touch Screen Gestures Device</string>
+    <string name="touch_screen_gesture_summary">Touch Screen Gestures Device options</string>
 
     <string name="ok">OK</string>
     <string name="dlg_ok">OK</string>
@@ -596,7 +659,7 @@
     <string name="misc_title">CarbonROM misc</string>
     <string name="pref_force_fast_charge_title">Force fast charge</string>
 
-    <!-- Main list strings -->
+    <!-- Performance Control -->
     <string name="omni_performance_settings">Omni Performance Tool</string>
 
     <!-- Superuser indicator on status bar -->

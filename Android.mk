@@ -15,8 +15,7 @@ LOCAL_SRC_FILES := \
 	src/com/android/settings/EventLogTags.logtags
 
 LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res \
-	frameworks/support/v7/cardview/res \
-	$(LOCAL_PATH)/../CarbonFibers/res
+	frameworks/support/v7/cardview/res
 
 LOCAL_SRC_FILES += \
 	src/com/android/location/XT/IXTSrv.aidl \
@@ -24,8 +23,6 @@ LOCAL_SRC_FILES += \
 
 LOCAL_SRC_FILES += \
 	src/com/android/display/IPPService.aidl
-
-LOCAL_SRC_FILES += $(call all-java-files-under, ../CarbonFibers/src)
 
 LOCAL_SRC_FILES += $(call all-java-files-under, ../PerformanceControl/src)
 
@@ -39,8 +36,7 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 
 LOCAL_AAPT_FLAGS := \
 	--auto-add-overlay \
-	--extra-packages android.support.v7.cardview \
-	--extra-packages com.carbon.fibers
+	--extra-packages android.support.v7.cardview
 
 LOCAL_AAPT_FLAGS += --extra-packages com.brewcrewfoo.performance
 

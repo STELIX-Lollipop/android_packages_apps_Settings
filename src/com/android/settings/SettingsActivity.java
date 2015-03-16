@@ -80,7 +80,7 @@ import com.android.settings.applications.ManageApplications;
 import com.android.settings.applications.ProcessStatsUi;
 import com.android.settings.blacklist.BlacklistSettings;
 import com.android.settings.bluetooth.BluetoothSettings;
-import com.android.settings.carbon.CarbonCustomization;
+import com.android.settings.carbon.CarbonAboutMe;
 import com.android.settings.dashboard.DashboardCategory;
 import com.android.settings.dashboard.DashboardSummary;
 import com.android.settings.dashboard.DashboardTile;
@@ -124,6 +124,10 @@ import com.android.settings.wifi.AdvancedWifiSettings;
 import com.android.settings.wifi.SavedAccessPointsWifiSettings;
 import com.android.settings.wifi.WifiSettings;
 import com.android.settings.wifi.p2p.WifiP2pSettings;
+
+import com.android.settings.carbon.*;
+import com.carbon.fibers.*;
+import com.carbon.fibers.CarbonSettingsActivity;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -222,6 +226,7 @@ public class SettingsActivity extends Activity
 
     // Show only these settings for restricted users
     private int[] SETTINGS_FOR_RESTRICTED = {
+            R.id.stelix_carbon_fibers,
             R.id.wireless_section,
             R.id.wifi_settings,
             R.id.bluetooth_settings,
@@ -251,11 +256,12 @@ public class SettingsActivity extends Activity
             R.id.home_settings,
             R.id.status_bar_settings,
             R.id.dashboard,
-            R.id.privacy_settings_cyanogenmod,
-            R.id.carbon_customization
+            R.id.privacy_settings_cyanogenmod
     };
 
     private static final String[] ENTRY_FRAGMENTS = {
+            CarbonSettingsActivity.class.getName(),
+            CarbonAboutMe.class.getName(),
             WirelessSettings.class.getName(),
             WifiSettings.class.getName(),
             AdvancedWifiSettings.class.getName(),
@@ -317,7 +323,6 @@ public class SettingsActivity extends Activity
             QuickLaunchSettings.class.getName(),
             ApnSettings.class.getName(),
             BlacklistSettings.class.getName(),
-            CarbonCustomization.class.getName(),
             ProfilesSettings.class.getName(),
             com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
             NotificationManagerSettings.class.getName(),

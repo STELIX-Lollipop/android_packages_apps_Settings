@@ -2223,14 +2223,37 @@
             </intent-filter>
         </activity>
 
+        <!-- Carbon Application Methods -->
+        <activity android:name="com.carbon.fibers.CarbonSettingsActivity" />
+        <activity android:name=".carbon.CarbonAbout" />
+        <activity android:name=".stelix.StelixHiddenImage" />
+
+        <activity
+        android:name="com.carbon.fibers.ShareToClipboard"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+        android:label="@string/title_clipboard_share" >
+            <intent-filter>
+             <action android:name="android.intent.action.SEND"/>
+
+             <category android:name="android.intent.category.ALTERNATIVE"/>
+             <category android:name="android.intent.category.DEFAULT"/>
+
+             <data android:mimeType="text/*" />
+            </intent-filter>
+        </activity>
+        <activity
+        android:name="com.carbon.fibers.CreateShortcut"
+            android:theme="@style/Theme.CreateShortCut" >
+        <intent-filter>
+               <action android:name="android.intent.action.CREATE_SHORTCUT" />
+
+           <category android:name="android.intent.category.DEFAULT" />
+          </intent-filter>
+        </activity>
+
         <!-- Aicp Extras -->
         <activity android:name=".aicp.gestureanywhere.GestureAnywhereBuilderActivity" />
         <activity android:name=".aicp.gestureanywhere.GestureAnywhereCreateGestureActivity" />
-
-        <!-- Carbon Application Methods -->
-        <activity android:name="com.carbon.fibers.activities.FibersActivity" />
-
-        <activity android:name=".stelix.StelixHiddenImage" />
 
         <!-- PerformanceControl activities -->
         <activity android:name="com.brewcrewfoo.performance.activities.MainActivity"/>
