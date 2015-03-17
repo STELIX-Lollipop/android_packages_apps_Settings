@@ -46,11 +46,9 @@ public class CarbonMoreDeviceSettings extends SettingsPreferenceFragment {
 
         addPreferencesFromResource(R.xml.carbon_more_device_settings);
         PackageManager pm = getPackageManager();
-        PreferenceScreen prefSet = getPreferenceScreen();
-        mAdvancedDeviceSettings = (PreferenceScreen)
-                prefSet.findPreference(KEY_ADVANCED_DEVICE_SETTINGS);
+        mAdvancedDeviceSettings = (PreferenceScreen) findPreference(KEY_ADVANCED_DEVICE_SETTINGS);
         if (!Helpers.isPackageInstalled(ADVANCED_PACKAGE_NAME, pm)) {
-            prefSet.removePreference(mAdvancedDeviceSettings);
+            getPreferenceScreen().removePreference(mAdvancedDeviceSettings);
         }
         
         mSpecificGestureSettings = (PreferenceScreen) findPreference(KEY_SPECIFIC_GESTURE_SETTINGS);
