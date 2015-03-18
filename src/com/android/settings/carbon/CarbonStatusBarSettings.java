@@ -59,14 +59,6 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
     private static final int STATUS_BAR_BATTERY_STYLE_HIDDEN = 4;
     private static final int STATUS_BAR_BATTERY_STYLE_TEXT = 6;
 
-    private static final String KEY_STATUS_BAR_CLOCK = "clock_style_pref";
-    private static final String KEY_TRAFFIC_MONITOR = "traffic_monitor";
-    private static final String KEY_BATTERY_BAR = "status_bar_battery_bar";
-
-    private PreferenceScreen mClockStyle;
-    private PreferenceScreen mTrafficMonitor;
-    private PreferenceScreen mBatteryBar;
-
     private ListPreference mStatusBarBattery;
     private ListPreference mStatusBarBatteryShowPercent;
 
@@ -77,9 +69,6 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
 
         ContentResolver resolver = getActivity().getContentResolver();
 
-        mClockStyle = (PreferenceScreen) getPreferenceScreen().findPreference(KEY_STATUS_BAR_CLOCK);
-        mTrafficMonitor = (PreferenceScreen) getPreferenceScreen().findPreference(KEY_TRAFFIC_MONITOR);
-        mBatteryBar = (PreferenceScreen) getPreferenceScreen().findPreference(KEY_BATTERY_BAR);
         mStatusBarBattery = (ListPreference) findPreference(STATUS_BAR_BATTERY_STYLE);
         mStatusBarBatteryShowPercent =
                 (ListPreference) findPreference(STATUS_BAR_SHOW_BATTERY_PERCENT);
@@ -100,9 +89,6 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
         if (TelephonyManager.getDefault().getPhoneCount() <= 1) {
             removePreference(Settings.System.STATUS_BAR_MSIM_SHOW_EMPTY_ICONS);
         }
-        updateBatteryBarDescription();
-        updateClockStyleDescription();
-        updateTrafficMonitorDescription();
     }
 
     @Override
@@ -140,45 +126,6 @@ public class CarbonStatusBarSettings extends SettingsPreferenceFragment
     @Override
     public void onResume() {
         super.onResume();
-        updateClockStyleDescription();
-        updateBatteryBarDescription();
-        updateTrafficMonitorDescription();
-    }
-
-    private void updateClockStyleDescription() {
-        if (mClockStyle == null) {
-            return;
-        }
-        if (Settings.System.getInt(getContentResolver(),
-               Settings.System.STATUS_BAR_CLOCK, 1) == 1) {
-            mClockStyle.setSummary(getString(R.string.enabled));
-        } else {
-            mClockStyle.setSummary(getString(R.string.disabled));
-         }
-    }
-
-    private void updateBatteryBarDescription() {
-        if (mBatteryBar == null) {
-            return;
-        }
-        if (Settings.System.getInt(getContentResolver(),
-               Settings.System.STATUSBAR_BATTERY_BAR, 1) == 0) {
-            mBatteryBar.setSummary(getString(R.string.disabled));
-        } else {
-            mBatteryBar.setSummary(getString(R.string.enabled));
-         }
-    }
-
-    private void updateTrafficMonitorDescription() {
-        if (mTrafficMonitor == null) {
-            return;
-        }
-        if (Settings.System.getInt(getContentResolver(),
-               Settings.System.NETWORK_TRAFFIC_STATE, 1) == 0) {
-            mTrafficMonitor.setSummary(getString(R.string.disabled));
-        } else {
-            mTrafficMonitor.setSummary(getString(R.string.enabled));
-         }
     }
 
     public static final Indexable.SearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =

@@ -21,7 +21,7 @@
 
         <header
             android:id="@+id/status_bar_settings"
-            android:fragment="com.android.settings.carbon.CarbonStatusBarSettings"
+            android:fragment="com.carbon.fibers.fragments.CarbonStatusBar"
             android:icon="@drawable/ic_settings_extdesk_hidenavbar"
             android:title="@string/status_bar_title"
             settings:advanced="true" />

@@ -25,18 +25,6 @@
         android:summary="@string/su_indicator_summary"
         android:defaultValue="true" />
 
-    <!-- Network traffic indicator -->
-    <PreferenceScreen
-        android:key="traffic_monitor"
-        android:fragment="com.android.settings.aicp.Traffic"
-        android:title="@string/network_traffic_title" />
-
-    <!-- Status bar clock tweaks -->
-    <PreferenceScreen
-        android:key="clock_style_pref"
-        android:fragment="com.android.settings.slim.StatusBarClockStyle"
-        android:title="@string/status_bar_clock" />
-
     <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
         android:key="status_bar_show_weather"
         android:title="@string/status_bar_show_weather_title"
@@ -56,11 +44,6 @@
         android:dialogTitle="@string/status_bar_battery_percentage_title"
         android:entries="@array/status_bar_battery_percentage_entries"
         android:entryValues="@array/status_bar_battery_percentage_values" />
-
-    <PreferenceScreen
-        android:key="status_bar_battery_bar"
-        android:fragment="com.android.settings.carbon.CarbonBatteryBarSettings"
-        android:title="@string/battery_bar_title" />
 
     <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
         android:key="status_bar_show_empty_sims"
