@@ -35,7 +35,7 @@ public class CarbonMoreDeviceSettings extends SettingsPreferenceFragment {
     private static final String KEY_ADVANCED_DEVICE_SETTINGS = "advanced_device_settings";
     private static final String KEY_SPECIFIC_GESTURE_SETTINGS = "device_specific_gesture_settings";
 
-    public static final String ADVANCED_PACKAGE_NAME = "com.cyanogenmod.settings.device";
+    public static final String ADVANCED_PACKAGE_NAME = "com.cyanogenmod.settings.device.DeviceSettings";
 
     private PreferenceScreen mAdvancedDeviceSettings;
     private PreferenceScreen mSpecificGestureSettings;
