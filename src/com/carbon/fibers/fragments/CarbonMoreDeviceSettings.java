@@ -25,7 +25,6 @@ import android.preference.PreferenceScreen;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.util.Helpers;
 
 import java.util.List;
 
@@ -35,8 +34,6 @@ public class CarbonMoreDeviceSettings extends SettingsPreferenceFragment {
     private static final String KEY_ADVANCED_DEVICE_SETTINGS = "advanced_device_settings";
     private static final String KEY_SPECIFIC_GESTURE_SETTINGS = "device_specific_gesture_settings";
 
-    public static final String ADVANCED_PACKAGE_NAME = "com.cyanogenmod.settings.device";
-
     private PreferenceScreen mAdvancedDeviceSettings;
     private PreferenceScreen mSpecificGestureSettings;
 
@@ -45,20 +42,20 @@ public class CarbonMoreDeviceSettings extends SettingsPreferenceFragment {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.carbon_more_device_settings);
-        PackageManager pm = getPackageManager();
+
         mAdvancedDeviceSettings = (PreferenceScreen) findPreference(KEY_ADVANCED_DEVICE_SETTINGS);
-        if (!Helpers.isPackageInstalled(ADVANCED_PACKAGE_NAME, pm)) {
+       if (!deviceSettingsAppExists(mAdvancedDeviceSettings)) {
             getPreferenceScreen().removePreference(mAdvancedDeviceSettings);
         }
-        
+
         mSpecificGestureSettings = (PreferenceScreen) findPreference(KEY_SPECIFIC_GESTURE_SETTINGS);
-        if (!deviceSettingsAppExists()) {
+        if (!deviceSettingsAppExists(mSpecificGestureSettings)) {
             getPreferenceScreen().removePreference(mSpecificGestureSettings);
         }
     }
 
-    private boolean deviceSettingsAppExists() {
-        Intent intent = mSpecificGestureSettings.getIntent();
+    private boolean deviceSettingsAppExists(PreferenceScreen mynewValue) {
+        Intent intent = mynewValue.getIntent();
         if (intent != null) {
             PackageManager pm = getActivity().getPackageManager();
             List<ResolveInfo> list = pm.queryIntentActivities(intent, PackageManager.GET_META_DATA);
