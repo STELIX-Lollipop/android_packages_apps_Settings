@@ -35,12 +35,6 @@
                 android:summary="@string/navigation_bar_arrow_keys_summary"
                 android:defaultValue="false" />
 
-        <PreferenceScreen
-            android:key="navigation_bar"
-            android:fragment="com.android.settings.cyanogenmod.NavBar"
-            android:title="@string/navigation_bar_title"
-            settings:advanced="true"/>
-
         <!-- Navbar height -->
         <ListPreference
             android:key="navigation_bar_height"
@@ -63,11 +57,4 @@
             android:defaultValue="true" />
 
     </PreferenceCategory>
-
-    <PreferenceScreen
-        android:key="navigation_bar_ring"
-        android:fragment="com.android.settings.cyanogenmod.NavRing"
-        android:title="@string/navigation_ring_title"
-        settings:advanced="true"/>
-
 </PreferenceScreen>

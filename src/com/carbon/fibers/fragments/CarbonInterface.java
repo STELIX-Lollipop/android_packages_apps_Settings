@@ -32,7 +32,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.settings.aicp.*;
+import com.android.settings.aicp.gestureanywhere.*;
 import com.android.settings.carbon.*;
+import com.android.settings.cyanogenmod.*;
 import com.android.settings.R;
 import com.android.settings.slim.*;
 import com.carbon.fibers.preference.SettingsPreferenceFragment;
@@ -41,9 +43,9 @@ import com.carbon.fibers.Utils;
 import java.lang.Exception;
 import java.util.ArrayList;
 
-public class CarbonStatusBar extends SettingsPreferenceFragment {
+public class CarbonInterface extends SettingsPreferenceFragment {
 
-    private static final String TAG = "CarbonStatusBar";
+    private static final String TAG = "CarbonNavBar";
 
     PagerTabStrip mPagerTabStrip;
     ViewPager mViewPager;
@@ -91,10 +93,10 @@ public class CarbonStatusBar extends SettingsPreferenceFragment {
 
         public StatusBarAdapter(FragmentManager fm) {
             super(fm);
-            frags[0] = new CarbonStatusBarSettings();
-            frags[1] = new StatusBarClockStyle();
-            frags[2] = new CarbonBatteryBarSettings();
-            frags[3] = new Traffic();
+            frags[0] = new CarbonInterfaceSettings();
+            frags[1] = new DisplayAnimationsSettings();
+            frags[2] = new GestureAnywhereSettings();
+            frags[3] = new AppCircleBar();
         }
 
         @Override
@@ -116,10 +118,10 @@ public class CarbonStatusBar extends SettingsPreferenceFragment {
     private String[] getTitles() {
         String titleString[];
         titleString = new String[] {
-                    getString(R.string.status_bar_title),
-                    getString(R.string.status_bar_clock),
-                    getString(R.string.battery_bar_title),
-                    getString(R.string.network_traffic_title)};
+                    getString(R.string.interface_settings_title),
+                    getString(R.string.disp_anim_settings_title),
+                    getString(R.string.gesture_anywhere_title),
+                    getString(R.string.app_circle_bar_title)};
         return titleString;
     }
 }

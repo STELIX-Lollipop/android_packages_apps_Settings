@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:textColor="@color/color_text_holo_dark"
+                android:textColor="@color/color_lollipop"
                 android:textAppearance="@style/TextAppearance.PagerTabs" />
 
     </android.support.v4.view.ViewPager>

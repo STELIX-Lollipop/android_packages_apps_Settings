@@ -17,7 +17,7 @@
                     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <header
-        android:title="@string/app_name" />
+        android:title="@string/carbon_fibers_title" />
 
         <header
             android:id="@+id/status_bar_settings"
@@ -28,15 +28,15 @@
 
         <header
             android:id="@+id/navbar_settings"
-            android:fragment="com.android.settings.carbon.CarbonNavBarSettings"
-            android:icon="@drawable/ic_settings_navigation_bar_teal"
+            android:fragment="com.carbon.fibers.fragments.CarbonNavBar"
+            android:icon="@drawable/ic_settings_extdesk_hidestatusbar"
             android:title="@string/navigation_bar_category"
             settings:advanced="true" />
 
         <header
             android:id="@+id/interface_settings"
-            android:fragment="com.android.settings.carbon.CarbonInterfaceSettings"
-            android:icon="@drawable/ic_settings_interface"
+            android:fragment="com.carbon.fibers.fragments.CarbonInterface"
+            android:icon="@drawable/ic_settings_extdesk_hideboth"
             android:title="@string/interface_settings_title"
             settings:advanced="true" />
 

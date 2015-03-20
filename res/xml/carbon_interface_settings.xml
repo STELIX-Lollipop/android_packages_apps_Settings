@@ -18,24 +18,6 @@
         android:title="@string/interface_settings_title"
         android:key="interface_settings">
 
-    <!-- Display and Animations -->
-    <PreferenceScreen
-        android:id="@+id/disp_anim_settings"
-        android:title="@string/disp_anim_settings_title"
-        android:fragment="com.android.settings.aicp.DisplayAnimationsSettings" />
-
-    <!-- Gesture anywhere -->
-    <PreferenceScreen
-        android:key="gesture_anywhere"
-        android:fragment="com.android.settings.aicp.gestureanywhere.GestureAnywhereSettings"
-        android:title="@string/gesture_anywhere_title" />
-
-    <!-- Circle app bar -->
-    <PreferenceScreen
-        android:key="app_circle_bar"
-        android:fragment="com.android.settings.aicp.AppCircleBar"
-        android:title="@string/app_circle_bar_title"/>
-
     <ListPreference
         android:key="toast_animation"
         android:title="@string/toast_animation_title"

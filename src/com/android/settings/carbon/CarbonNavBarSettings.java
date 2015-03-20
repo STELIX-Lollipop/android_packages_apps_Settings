@@ -47,7 +47,6 @@ public class CarbonNavBarSettings extends SettingsPreferenceFragment
     private static final String NAVIGATION_BAR_TINT = "navigation_bar_tint";
 
     private ListPreference mNavigationBarHeight;
-    private PreferenceScreen mNavBarSettings;
     private ColorPickerPreference mNavbarButtonTint;
 
     @Override
@@ -58,10 +57,6 @@ public class CarbonNavBarSettings extends SettingsPreferenceFragment
 
         ContentResolver resolver = getActivity().getContentResolver();
         PreferenceScreen prefSet = getPreferenceScreen();
-        PackageManager pm = getPackageManager();
-        Resources res = getResources();
-
-        mNavBarSettings = (PreferenceScreen) findPreference("navbar_settings");
 
         // Navbar height
         mNavigationBarHeight = (ListPreference) findPreference(KEY_NAVIGATION_BAR_HEIGHT);

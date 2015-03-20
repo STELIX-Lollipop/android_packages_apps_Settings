@@ -26,6 +26,7 @@
     <color name="color_text_holo_dark">#FFFFFF</color>
     <color name="color_carbon">#0D0D0D</color>
     <color name="color_kitkat">#AB0A0A</color>
+    <color name="color_lollipop">#3399FF</color>
 
     <color name="card_pressed">#7E0099CC</color>
     <color name="card_gray">#DEDEDE</color>
