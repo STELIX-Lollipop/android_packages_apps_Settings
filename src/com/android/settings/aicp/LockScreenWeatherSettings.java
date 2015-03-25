@@ -23,7 +23,7 @@ import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
@@ -55,11 +55,11 @@ public class LockScreenWeatherSettings extends SettingsPreferenceFragment implem
     private static final int MENU_RESET = Menu.FIRST;
     private static final int DLG_RESET = 0;
 
-    private CheckBoxPreference mShowWeather;
-    private CheckBoxPreference mShowLocation;
-    private CheckBoxPreference mShowTimestamp;
+    private SwitchPreference mShowWeather;
+    private SwitchPreference mShowLocation;
+    private SwitchPreference mShowTimestamp;
     private ListPreference mConditionIcon;
-    private CheckBoxPreference mColorizeAllIcons;
+    private SwitchPreference mColorizeAllIcons;
 
     private ContentResolver mResolver;
 
@@ -82,19 +82,19 @@ public class LockScreenWeatherSettings extends SettingsPreferenceFragment implem
                 Settings.System.LOCK_SCREEN_SHOW_WEATHER, 0) == 1;
 
         mShowWeather =
-                (CheckBoxPreference) findPreference(PREF_SHOW_WEATHER);
+                (SwitchPreference) findPreference(PREF_SHOW_WEATHER);
         mShowWeather.setChecked(showWeather);
         mShowWeather.setOnPreferenceChangeListener(this);
 
         if (showWeather) {
             mShowLocation =
-                    (CheckBoxPreference) findPreference(PREF_SHOW_LOCATION);
+                    (SwitchPreference) findPreference(PREF_SHOW_LOCATION);
             mShowLocation.setChecked(Settings.System.getInt(mResolver,
                     Settings.System.LOCK_SCREEN_SHOW_WEATHER_LOCATION, 1) == 1);
             mShowLocation.setOnPreferenceChangeListener(this);
 
             mShowTimestamp =
-                    (CheckBoxPreference) findPreference(PREF_SHOW_TIMESTAMP);
+                    (SwitchPreference) findPreference(PREF_SHOW_TIMESTAMP);
             mShowTimestamp.setChecked(Settings.System.getInt(mResolver,
                     Settings.System.LOCK_SCREEN_SHOW_WEATHER_TIMESTAMP, 1) == 1);
             mShowTimestamp.setOnPreferenceChangeListener(this);
@@ -108,38 +108,15 @@ public class LockScreenWeatherSettings extends SettingsPreferenceFragment implem
             mConditionIcon.setOnPreferenceChangeListener(this);
 
             mColorizeAllIcons =
-                    (CheckBoxPreference) findPreference(PREF_COLORIZE_ALL_ICONS);
+                    (SwitchPreference) findPreference(PREF_COLORIZE_ALL_ICONS);
             mColorizeAllIcons.setChecked(Settings.System.getInt(mResolver,
                     Settings.System.LOCK_SCREEN_WEATHER_COLORIZE_ALL_ICONS, 0) == 1);
             mColorizeAllIcons.setOnPreferenceChangeListener(this);
-            intColor = Settings.System.getInt(mResolver,
-                    Settings.System.LOCK_SCREEN_WEATHER_TEXT_COLOR,
-                    DEFAULT_COLOR);
-            mTextColor.setNewPreviewColor(intColor);
-            hexColor = String.format("#%08x", (0xffffffff & intColor));
-            mTextColor.setSummary(hexColor);
-            mTextColor.setOnPreferenceChangeListener(this);
         } else {
             removePreference(PREF_SHOW_LOCATION);
             removePreference(PREF_SHOW_TIMESTAMP);
             removePreference(PREF_CONDITION_ICON);
             removePreference(PREF_COLORIZE_ALL_ICONS);
-            catColors.removePreference(mTextColor);
-        }
-        if (showWeather && ((conditionIcon == MONOCHROME_ICON)
-                || (conditionIcon != MONOCHROME_ICON && colorizeAllIcons))) {
-            intColor = Settings.System.getInt(mResolver,
-                    Settings.System.LOCK_SCREEN_WEATHER_ICON_COLOR,
-                    DEFAULT_COLOR);
-            mIconColor.setNewPreviewColor(intColor);
-            hexColor = String.format("#%08x", (0xffffffff & intColor));
-            mIconColor.setSummary(hexColor);
-            mIconColor.setOnPreferenceChangeListener(this);
-        } else {
-            catColors.removePreference(mIconColor);
-            if (!showWeather) {
-                removePreference(PREF_CAT_COLORS);
-            }
         }
 
         setHasOptionsMenu(true);
