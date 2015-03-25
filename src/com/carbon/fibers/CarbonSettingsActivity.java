@@ -204,6 +204,7 @@ public class CarbonSettingsActivity extends PreferenceActivity implements Button
     }
 
     private static final String[] ENTRY_FRAGMENTS = {
+        ActionListViewSettings.class.getName(),
         AnimationControls.class.getName(),
         AnimBarPreference.class.getName(),
         AppCircleBar.class.getName(),
