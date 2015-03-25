@@ -95,12 +95,10 @@
         </PreferenceScreen>
 
         <!-- Device hardware model -->
-        <PreferenceScreen android:key="device_model"
+        <Preference android:key="device_model"
                 style="?android:preferenceInformationStyle"
                 android:title="@string/model_name"
-                android:summary="@string/device_info_default"
-                android:fragment="com.android.settings.stelix.StelixHiddenImage" >
-        </PreferenceScreen>
+                android:summary="@string/device_info_default"/>
 
         <!-- Device cpu info -->
         <Preference android:key="device_cpu"

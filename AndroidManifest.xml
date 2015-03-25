@@ -2274,7 +2274,6 @@
         <!-- Carbon Application Methods -->
         <activity android:name="com.carbon.fibers.CarbonSettingsActivity" />
         <activity android:name=".carbon.CarbonAbout" />
-        <activity android:name=".stelix.StelixHiddenImage" />
 
         <activity
         android:name="com.carbon.fibers.ShareToClipboard"
