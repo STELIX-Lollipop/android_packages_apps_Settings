@@ -33,6 +33,7 @@ import android.view.ViewGroup;
 
 import com.android.settings.aicp.*;
 import com.android.settings.carbon.*;
+import com.android.settings.cyanogenmod.*;
 import com.android.settings.R;
 import com.android.settings.slim.*;
 import com.carbon.fibers.preference.SettingsPreferenceFragment;
@@ -41,9 +42,9 @@ import com.carbon.fibers.Utils;
 import java.lang.Exception;
 import java.util.ArrayList;
 
-public class CarbonStatusBar extends SettingsPreferenceFragment {
+public class CarbonNotificationDrawerSettings extends SettingsPreferenceFragment {
 
-    private static final String TAG = "CarbonStatusBar";
+    private static final String TAG = "CarbonNotificationDrawerSettings";
 
     PagerTabStrip mPagerTabStrip;
     ViewPager mViewPager;
@@ -91,10 +92,8 @@ public class CarbonStatusBar extends SettingsPreferenceFragment {
 
         public StatusBarAdapter(FragmentManager fm) {
             super(fm);
-            frags[0] = new CarbonStatusBarSettings();
-            frags[1] = new StatusBarClockStyle();
-            frags[2] = new CarbonBatteryBarSettings();
-            frags[3] = new Traffic();
+            frags[0] = new NotificationDrawerSettings();
+            frags[1] = new QSColors();
         }
 
         @Override
@@ -116,10 +115,8 @@ public class CarbonStatusBar extends SettingsPreferenceFragment {
     private String[] getTitles() {
         String titleString[];
         titleString = new String[] {
-                    getString(R.string.status_bar_title),
-                    getString(R.string.status_bar_clock),
-                    getString(R.string.battery_bar_title),
-                    getString(R.string.network_traffic_title)};
+                    getString(R.string.notification_drawer_title),
+                    getString(R.string.qs_colors_title)};
         return titleString;
     }
 }
